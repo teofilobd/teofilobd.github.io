@@ -50,9 +50,20 @@ Cons:
 # Let's see in practice
 
 ## Basic example
+
+In this first example, let's create a simple shader with GPU instancing capabilities and use it to replicate several spheres into a scene.
+
 ## Playing with properties
+
+Now, let's create a script to change the properties of each sphere by using property blocks.
+
 ## Playing with texture
+
+As seen in the previous example, we can change properties of instances while keeping the instancing working. However, we cannot have different textures per instance, what would demand a lot of memory by the way. But, there is a workaround for this: we can set an UV offset per instance as well as different scale and translation for the local UV space. In other words, we can have an texture atlas and sample it differently per instance.
+
 ## Changing mesh with noise
+
+This last example shows another way of varying your instances. In this case, I'm using the instance ID to control the speed of the waves on the sphere surfaces.
 
 # Conclusion
 
