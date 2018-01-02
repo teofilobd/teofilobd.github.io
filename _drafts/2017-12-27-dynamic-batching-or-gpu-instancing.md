@@ -310,7 +310,7 @@ Shader "Unlit/PropertyInstancing"
 
 As seen in the previous example, we can change properties of instances while keeping the instancing working. However, we cannot have different textures per instance, what would demand a lot of memory by the way. But, there is a workaround for this: we can set an UV offset per instance as well as different scale and translation for the local UV space. In other words, we can have an texture atlas and sample it differently per instance.
 
-![Atlas]({{site.baseurl}}/_drafts/Atlas.jpeg | width=48)
+![Atlas.jpeg]({{site.baseurl}}/_drafts/Atlas.jpeg)
 _Images from [www.textures.com](www.textures.com)_
 
 In this example, I'm going to use the atlas above with 4 textures. Each instance will handle a different cell pair related to a texture in the atlas _((0,0),(0,1),(1,0),(1,1))_ and also its own tiling and offset. Our new shader will be the following:
@@ -466,11 +466,10 @@ In the end we get something like the following image. Note that the container pa
 
 ![Texture Example]({{site.baseurl}}/_drafts/TextureExample.JPG)
 
-
-## Changing mesh with noise
-
-This last example shows another way of varying your instances. In this case, I'm using the instance ID to control the speed of the waves on the sphere surfaces.
-
 # Conclusion
 
-GPU instancing is a powerful technique that you could be using in your game. This was just a simple and brief introduction to it, for more information about the capabilities and limitations of this technique you can check [Unity's documentation](https://docs.unity3d.com/Manual/GPUInstancing.html).
+GPU instancing is a powerful technique that you could be using in your game. You can use your creativity to set different properties per instance in order to give variety to them. You could apply a different vertex offset per instance, or use the instance ID as input for some algorithm to be used in the shader, just to cite some examples.
+
+This was just a simple and brief introduction to GPU instancing, for more information about the capabilities and limitations of this technique you can check [Unity's documentation](https://docs.unity3d.com/Manual/GPUInstancing.html).
+
+The code use in the examples is available on my github.
