@@ -51,7 +51,9 @@ Cons:
 
 ## Basic example
 
-In this first example, let's create a simple shader with GPU instancing capabilities and use it to replicate several spheres into a scene.
+In this first example, let's create a simple shader with GPU instancing capabilities and use it to replicate several cubes into a scene. The scene has a container made with boxes and a spawning point that creates cubes at according to a interval specified.
+
+	
 
 ## Playing with properties
 
