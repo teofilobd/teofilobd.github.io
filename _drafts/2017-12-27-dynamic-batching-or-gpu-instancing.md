@@ -192,25 +192,22 @@ public class ObjectPropertyHandler : MonoBehaviour
 It basically allows you to set the instance color property. Now, our cube spawner will be slightly different, I added a line that sets a random color to the cube instance as soon as it is created:
 
 ```C#
+IEnumerator SpawObjects()
+{
+  WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
+  while (true)
+  {
+    GameObject go = Instantiate(m_ObjectPrefab, transform);
+    go.transform.parent = transform;
+    go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f)));
+    ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
 
-    IEnumerator SpawObjects()
-    {
-        WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
-        while (true)
-        {
-            GameObject go = Instantiate(m_ObjectPrefab, transform);
-            go.transform.parent = transform;
-            go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
-                                                              Random.Range(0f, 100f), 
-                                                              Random.Range(0f, 100f)));
-            ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
+    // Choose random color.
+    oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
 
-            // Choose random color.
-            oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
-            
-            yield return waitForInterval;
-        }
-    }
+    yield return waitForInterval;
+  }
+}
 ```
 
 
