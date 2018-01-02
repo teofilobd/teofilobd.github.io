@@ -64,10 +64,10 @@ public class ObjectSpawnerBasic : MonoBehaviour
 
 	void Start ()
     {
-        StartCoroutine(SpawObjects());
+        StartCoroutine(SpawnObjects());
 	}
 
-    IEnumerator SpawObjects()
+    IEnumerator SpawnObjects()
     {
         WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
         while(true)
@@ -192,28 +192,280 @@ public class ObjectPropertyHandler : MonoBehaviour
 It basically allows you to set the instance color property. Now, our cube spawner will be slightly different, I added a line that sets a random color to the cube instance as soon as it is created:
 
 ```C#
-IEnumerator SpawObjects()
+IEnumerator SpawnObjects()
 {
-  WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
-  while (true)
-  {
-    GameObject go = Instantiate(m_ObjectPrefab, transform);
-    go.transform.parent = transform;
-    go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f)));
-    ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
+	WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
+  	while (true)
+  	{
+    	GameObject go = Instantiate(m_ObjectPrefab, transform);
+    	go.transform.parent = transform;
+    	go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
+                                                          Random.Range(0f, 100f), 
+                                                          Random.Range(0f, 100f)));
+    	ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
 
-    // Choose random color.
-    oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+    	// Choose random color.
+    	oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
 
-    yield return waitForInterval;
-  }
+    	yield return waitForInterval;
+  	}
 }
 ```
+
+In the shader, now the color is a per instance property, i.e., it has to be declared in a special block and also has a different way of being accessed. I also added a texture (but not per instance).
+
+```ShaderLab
+Shader "Unlit/PropertyInstancing"
+{
+	Properties
+	{
+		_Color ("Color", Color) = (1,1,1,1)
+		_MainTex ("Texture", 2D) = "white" {}
+	}
+	SubShader
+	{
+		Tags { "RenderType"="Opaque" }
+		LOD 100
+
+		Pass
+		{
+			Tags { "LightMode" = "ForwardBase"}
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			// Enable gpu instancing variants.
+			#pragma multi_compile_instancing
+
+			#include "UnityCG.cginc"
+
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				float2 uv : TEXCOORD01;				
+				UNITY_VERTEX_INPUT_INSTANCE_ID // Need this for basic functionality.
+			};
+
+			struct v2f
+			{
+				float4 vertex : SV_POSITION;
+				float2 uv : TEXCOORD01;
+				float3 normal : TEXCOORD02;
+				float3 worldPos : TEXCOORD03;
+				UNITY_VERTEX_INPUT_INSTANCE_ID // Need this to be able to get property in fragment shader.				
+			};
+
+			// Per instance properties must be declared in this block.
+			UNITY_INSTANCING_BUFFER_START(Props)
+                UNITY_DEFINE_INSTANCED_PROP(fixed4, _Color)
+            UNITY_INSTANCING_BUFFER_END(Props)
+
+			sampler2D _MainTex; float4 _MainTex_ST;
+
+			v2f vert (appdata v)
+			{
+				v2f o;
+
+				// Setup.
+				UNITY_SETUP_INSTANCE_ID(v);
+				// Transfer to fragment shader.
+				UNITY_TRANSFER_INSTANCE_ID(v, o);
+
+				o.normal = UnityObjectToWorldNormal(v.normal);
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.uv = TRANSFORM_TEX(v.uv, _MainTex);
+				return o;
+			}
+			
+			fixed4 frag (v2f i) : SV_Target
+			{
+				// Setup.
+				UNITY_SETUP_INSTANCE_ID(i);
+
+				float3 normalDir = normalize(i.normal);
+				float3 lightDir = _WorldSpaceLightPos0;
+				// Simple light interaction.
+				float3 diffuse = clamp(dot(normalDir, lightDir), 0.5, 1);
+
+				// Get per instance property value.
+				fixed3 color = UNITY_ACCESS_INSTANCED_PROP(Props, _Color);
+				fixed3 texColor = tex2D(_MainTex, i.uv);
+
+				return fixed4(texColor * diffuse * color, 1);
+			}
+			ENDCG
+		}
+	}
+}
+
+```
+
+![Property Example]({{site.baseurl}}/_drafts/PropertyExample.JPG)
 
 
 ## Playing with texture
 
 As seen in the previous example, we can change properties of instances while keeping the instancing working. However, we cannot have different textures per instance, what would demand a lot of memory by the way. But, there is a workaround for this: we can set an UV offset per instance as well as different scale and translation for the local UV space. In other words, we can have an texture atlas and sample it differently per instance.
+
+![Atlas]({{site.baseurl}}/_drafts/Atlas.jpeg | width=48)
+_Images from [www.textures.com](www.textures.com)_
+
+In this example, I'm going to use the atlas above with 4 textures. Each instance will handle a different cell pair related to a texture in the atlas _((0,0),(0,1),(1,0),(1,1))_ and also its own tiling and offset. Our new shader will be the following:
+
+```C#
+using UnityEngine;
+
+public class ObjectTextureHandler : MonoBehaviour
+{
+    public Vector4 m_TextureCellAndDimension;
+    public Vector4 m_TextureTilingAndOffset;
+    
+    private void Start()
+    {
+        // Create property block and set to the mesh.
+        MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+        propertyBlock.SetVector("_TextureCellDim", m_TextureCellAndDimension);
+        propertyBlock.SetVector("_TextureST", m_TextureTilingAndOffset);        
+        GetComponent<MeshRenderer>().SetPropertyBlock(propertyBlock);
+    }
+}
+```
+
+Our object spawner will then randomly select cell, tiling and offset per instance:
+
+```C#
+IEnumerator SpawObjects()
+{
+	WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
+	while (true)
+	{
+		GameObject go = Instantiate(m_ObjectPrefab, transform);
+		go.transform.parent = transform;
+		go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
+                                                          Random.Range(0f, 100f), 
+                                                          Random.Range(0f, 100f)));
+
+		ObjectTextureHandler oph = go.AddComponent<ObjectTextureHandler>();
+            
+		// Choose random texture cell, tiling and offset.
+		oph.m_TextureCellAndDimension = new Vector4(Mathf.Round(Random.Range(0.0f, 1.0f)), 
+                                                    Mathf.Round(Random.Range(0.0f, 1.0f)), 2, 2);
+		float tiling = Random.Range(1.0f, 3.0f);
+		oph.m_TextureTilingAndOffset = new Vector4(tiling, 
+                                                   tiling, 
+                                                   Random.Range(0f,1f), 
+                                                   Random.Range(0f,1f));
+
+		yield return waitForInterval;
+	}
+}
+```
+
+Finally, our shader will take that information and update the uv accordingly (apply the tiling and offset, sum cell pair and divide by atlas dimension).
+
+```ShaderLab
+Shader "Unlit/TextureInstancing"
+{
+	Properties
+	{
+		_MainTex ("Texture", 2D) = "white" {}
+		_TextureCellDim ("Texture Cell and Dimension", Vector) = (0,0,0,0)
+		_TextureST ("Texture ST", Vector) = (1,1,0,0)
+	}
+	SubShader
+	{
+		Tags { "RenderType"="Opaque" }
+		LOD 100
+
+		Pass
+		{
+			Tags { "LightMode" = "ForwardBase"}
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			// Enable gpu instancing variants.
+			#pragma multi_compile_instancing
+
+			#include "UnityCG.cginc"
+
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+				float2 uv : TEXCOORD01;
+				UNITY_VERTEX_INPUT_INSTANCE_ID // Need this for basic functionality.
+			};
+
+			struct v2f
+			{
+				float4 vertex : SV_POSITION;
+				float2 uv : TEXCOORD01;
+				float3 normal : TEXCOORD02;
+				float3 worldPos : TEXCOORD03;
+				UNITY_VERTEX_INPUT_INSTANCE_ID // Need this to be able to get property in fragment shader.				
+			};
+
+			// Per instance properties must be declared in this block.
+			UNITY_INSTANCING_BUFFER_START(Props)
+                UNITY_DEFINE_INSTANCED_PROP(float4, _TextureCellDim)
+                UNITY_DEFINE_INSTANCED_PROP(float4, _TextureST)
+            UNITY_INSTANCING_BUFFER_END(Props)
+
+			sampler2D _MainTex; float4 _MainTex_ST;
+
+			v2f vert (appdata v)
+			{
+				v2f o;
+
+				// Setup.
+				UNITY_SETUP_INSTANCE_ID(v);
+				// Transfer to fragment shader.
+				UNITY_TRANSFER_INSTANCE_ID(v, o);
+
+				o.normal = UnityObjectToWorldNormal(v.normal);
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				o.uv = v.uv;
+				return o;
+			}
+			
+			fixed4 frag (v2f i) : SV_Target
+			{
+				// Setup.
+				UNITY_SETUP_INSTANCE_ID(i);
+
+				float3 normalDir = normalize(i.normal);
+				float3 lightDir = _WorldSpaceLightPos0;
+				// Simple light interaction.
+				float3 diffuse = clamp(dot(normalDir, lightDir), 0.5, 1);
+				
+				// Get per instance property values.
+				float4 texCellDim = UNITY_ACCESS_INSTANCED_PROP(Props, _TextureCellDim);
+				float4 texST = UNITY_ACCESS_INSTANCED_PROP(Props, _TextureST);
+				
+				// Apply tiling and offset, and compute uv for cell specified. 
+				float2 uv = (texCellDim.xy + frac(i.uv * texST.xy + texST.zw))/texCellDim.zw; 
+				
+				fixed3 texColor = tex2D(_MainTex, uv);
+
+				return fixed4(texColor * diffuse, 1);
+			}
+			ENDCG
+		}
+	}
+}
+
+```
+
+In the end we get something like the following image. Note that the container parts can have a different setup by just adjusting their handlers individually.
+
+![Texture Example]({{site.baseurl}}/_drafts/TextureExample.JPG)
+
 
 ## Changing mesh with noise
 
