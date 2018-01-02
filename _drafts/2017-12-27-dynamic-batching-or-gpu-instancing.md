@@ -310,7 +310,8 @@ Shader "Unlit/PropertyInstancing"
 
 As seen in the previous example, we can change properties of instances while keeping the instancing working. However, we cannot have different textures per instance, what would demand a lot of memory by the way. But, there is a workaround for this: we can set an UV offset per instance as well as different scale and translation for the local UV space. In other words, we can have an texture atlas and sample it differently per instance.
 
-![Atlas]({{site.baseurl}}/_drafts/Atlas.jpeg | width=48)
+<a href="url"><img src="{{site.baseurl}}/_drafts/Atlas.jpeg" align="left" height="48" width="48" ></a>
+
 _Images from [www.textures.com](www.textures.com)_
 
 In this example, I'm going to use the atlas above with 4 textures. Each instance will handle a different cell pair related to a texture in the atlas _((0,0),(0,1),(1,0),(1,1))_ and also its own tiling and offset. Our new shader will be the following:
