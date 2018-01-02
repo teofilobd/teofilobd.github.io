@@ -53,39 +53,113 @@ Cons:
 
 In this first example, let's create a simple shader with GPU instancing capabilities and use it to replicate several cubes into a scene. The scene has a container made with boxes and a spawning point that creates cubes at according to a interval specified. This is the script responsible for spawning cubes:
 
-	using System.Collections;
-    using UnityEngine;
+```C#
+using System.Collections;
+using UnityEngine;
 
-    public class ObjectSpawnerBasic : MonoBehaviour
+public class ObjectSpawnerBasic : MonoBehaviour
+{
+    public GameObject m_ObjectPrefab;
+    public float m_SpawningInterval = 1f;
+
+	void Start ()
     {
-        public GameObject m_ObjectPrefab;
-        public float m_SpawningInterval = 1f;
+        StartCoroutine(SpawObjects());
+	}
 
-        void Start ()
+    IEnumerator SpawObjects()
+    {
+        WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
+        while(true)
         {
-            StartCoroutine(SpawObjects());
-        }
+            GameObject go = Instantiate(m_ObjectPrefab, transform);
+            go.transform.parent = transform;
+            go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
+            												  Random.Range(0f, 100f), 
+                                    						  Random.Range(0f, 100f)));
 
-        IEnumerator SpawObjects()
-        {
-            WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
-            while(true)
-            {
-                GameObject go = Instantiate(m_ObjectPrefab, transform);
-                go.transform.parent = transform;
-                go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), Random.Range(0f, 100f), Random.Range(0f, 100f)));
-
-                yield return waitForInterval;
-            }
-        }
-
-        // Show spawning point.
-        private void OnDrawGizmos()
-        {
-            Gizmos.DrawWireSphere(transform.position, 0.1f);
+            yield return waitForInterval;
         }
     }
+}
 
+```
+
+And this is the simplest shader with GPU instancing that you can have. It basically enables GPU instancing. I added simple light interaction so the cubes don't look flat.
+
+```ShaderLab
+Shader "Unlit/BasicInstancing"
+{
+	Properties
+	{
+		_Color ("Color", Color) = (1,1,1,1)
+	}
+
+	SubShader
+	{
+		Tags { "RenderType"="Opaque" }
+		LOD 100
+
+		Pass
+		{
+			Tags { "LightMode" = "ForwardBase"}
+
+			CGPROGRAM
+			#pragma vertex vert
+			#pragma fragment frag
+			
+			// Enable gpu instancing variants.
+			#pragma multi_compile_instancing
+
+			#include "UnityCG.cginc"
+
+			struct appdata
+			{
+				float4 vertex : POSITION;
+				float3 normal : NORMAL;
+
+				// Need this for basic functionality.
+				UNITY_VERTEX_INPUT_INSTANCE_ID
+			};
+
+			struct v2f
+			{
+				float4 vertex : SV_POSITION;
+				float3 normal : TEXCOORD01;
+				float3 worldPos : TEXCOORD02;
+			};
+
+			fixed4 _Color;
+			
+			v2f vert (appdata v)
+			{
+				v2f o;
+
+				// Need this for basic functionality.
+				UNITY_SETUP_INSTANCE_ID(v);
+
+				o.normal = UnityObjectToWorldNormal(v.normal);
+				o.worldPos = mul(unity_ObjectToWorld, v.vertex).xyz;
+				o.vertex = UnityObjectToClipPos(v.vertex);
+				return o;
+			}
+			
+			fixed4 frag (v2f i) : SV_Target
+			{
+				float3 normalDir = normalize(i.normal);
+				float3 lightDir = _WorldSpaceLightPos0;
+
+				// Simple light interaction.
+				float3 diffuse = clamp(dot(normalDir, lightDir), 0.5, 1);
+
+				return fixed4(diffuse * _Color.rgb, 1);
+			}
+			ENDCG
+		}
+	}
+}
+
+```
 
 ## Playing with properties
 
