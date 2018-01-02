@@ -160,6 +160,7 @@ Shader "Unlit/BasicInstancing"
 }
 
 ```
+![Basic Example]({{site.baseurl}}/_drafts/BasicExample.JPG)
 
 ## Playing with properties
 
