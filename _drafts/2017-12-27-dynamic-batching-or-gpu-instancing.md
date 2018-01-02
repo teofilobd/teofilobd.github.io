@@ -207,6 +207,7 @@ It basically allows you to set the instance color property. Now, our cube spawne
 
             // Choose random color.
             oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+            
             yield return waitForInterval;
         }
     }
