@@ -160,11 +160,58 @@ Shader "Unlit/BasicInstancing"
 }
 
 ```
+
+The cube prefab material uses the shader above and has the option 'Enable GPU Instancing' ticked. The scene is composed only by objects using this same material. As result you can see that we have only one draw for the whole scene below.
+
 ![Basic Example]({{site.baseurl}}/_drafts/BasicExample.JPG)
+
 
 ## Playing with properties
 
-Now, let's create a script to change the properties of each sphere by using property blocks.
+Now, let's create a script to change the properties of each cube by using material property blocks. In this case, each cube instance will have a different color.
+
+To help managing each cube's color property, we are going to use the following script:
+
+```C#
+using UnityEngine;
+
+public class ObjectPropertyHandler : MonoBehaviour
+{
+    public Color m_Color;
+
+    private void Start()
+    {
+        // Create property block and set to the mesh.
+        MaterialPropertyBlock propertyBlock = new MaterialPropertyBlock();
+        propertyBlock.SetColor("_Color", m_Color);
+        GetComponent<MeshRenderer>().SetPropertyBlock(propertyBlock);        
+    }
+}
+```
+
+It basically allows you to set the instance color property. Now, our cube spawner will be slightly different, I added a line that sets a random color to the cube instance as soon as it is created:
+
+```C#
+
+    IEnumerator SpawObjects()
+    {
+        WaitForSeconds waitForInterval = new WaitForSeconds(m_SpawningInterval);
+        while (true)
+        {
+            GameObject go = Instantiate(m_ObjectPrefab, transform);
+            go.transform.parent = transform;
+            go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
+                                                              Random.Range(0f, 100f), 
+                                                              Random.Range(0f, 100f)));
+            ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
+
+            // Choose random color.
+            oph.m_Color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), 1f);
+            yield return waitForInterval;
+        }
+    }
+```
+
 
 ## Playing with texture
 
