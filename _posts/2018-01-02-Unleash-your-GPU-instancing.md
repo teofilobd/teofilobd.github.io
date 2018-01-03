@@ -7,15 +7,15 @@ There are some ways of reducing the number of draw calls in a game. Usually, peo
 
 For static meshes, this kind of setup is easy and straightforward. However, for dynamic meshes, the things start to get a bit more complicated. These are the rules to be followed according to Unity's documentation:
 
-- *Batching dynamic GameObjects has certain overhead per vertex, so batching is applied only to Meshes containing fewer than 900 vertex attributes in total.*
-  - *If your Shader is using Vertex Position, Normal and single UV, then you can batch up to 300 verts, while if your Shader is using Vertex Position, Normal, UV0, UV1 and Tangent, then only 180 verts.*
-  - *Note: attribute count limit might be changed in future.*
-- *GameObjects are not batched if they contain mirroring on the transform (for example GameObject A with +1 scale and GameObject B with –1 scale cannot be batched together).*
-- *Using different Material instances causes GameObjects not to batch together, even if they are essentially the same. The exception is shadow caster rendering.*
-- *GameObjects with lightmaps have additional renderer parameters: lightmap index and offset/scale into the lightmap. Generally, dynamic lightmapped GameObjects should point to exactly the same lightmap location to be batched.*
-- *Multi-pass Shaders break batching.*
-  - *Almost all Unity Shaders support several Lights in forward rendering, effectively doing additional passes for them. The draw calls for “additional per-pixel lights” are not batched.*
-  - *The Legacy Deferred (light pre-pass) rendering path has dynamic batching disabled, because it has to draw GameObjects twice. *
+> - *Batching dynamic GameObjects has certain overhead per vertex, so batching is applied only to Meshes containing fewer than 900 vertex attributes in total.*
+>   - *If your Shader is using Vertex Position, Normal and single UV, then you can batch up to 300 verts, while if your Shader is using Vertex Position, Normal, UV0, UV1 and Tangent, then only 180 verts.*
+>   - *Note: attribute count limit might be changed in future.*
+> - *GameObjects are not batched if they contain mirroring on the transform (for example GameObject A with +1 scale and GameObject B with –1 scale cannot be batched together).*
+> - *Using different Material instances causes GameObjects not to batch together, even if they are essentially the same. The exception is shadow caster rendering.*
+> - *GameObjects with lightmaps have additional renderer parameters: lightmap index and offset/scale into the lightmap. Generally, dynamic lightmapped GameObjects should point to exactly the same lightmap location to be batched.*
+> - *Multi-pass Shaders break batching.*
+>   - *Almost all Unity Shaders support several Lights in forward rendering, effectively doing additional passes for them. The draw calls for “additional per-pixel lights” are not batched.*
+>   - *The Legacy Deferred (light pre-pass) rendering path has dynamic batching disabled, because it has to draw GameObjects twice. *
 
 If you have several dynamic meshes in your game, it might be hard to follow theses rules, specially the one about the number of vertex attributes. However, there is another technique, called GPU instancing, that can be used for this purpose as well. 
 
