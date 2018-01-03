@@ -19,7 +19,7 @@ For static meshes, this kind of setup is easy and straightforward. However, for 
 
 If you have several dynamic meshes in your game, it might be hard to follow theses rules, specially the one about the number of vertex attributes. However, there is another technique, called GPU instancing, that can be used for this purpose as well. 
 
-Let's say you have many dynamic meshes into your scene, but theses meshes are all instances of a same mesh. If this is the case, I have good news for you. By using GPU instancing you can draw all of those instances with one draw call, and they can even have different properties in their material.
+Let's say you have many dynamic meshes into your scene, but theses meshes are all instances of a same mesh. If this is the case, I have good news for you. By using GPU instancing you might be able to draw all of those instances with one draw call, and they can even have different properties in their material.
 
 > GPU instancing can be seen as an alternative to the use of batches when you have several instances of a same mesh in a scene. 
 
@@ -47,7 +47,20 @@ Cons:
 2. Always the same mesh.
 3. You have to create scripts to setup different material properties.
 
+Of course there are more pros and cons, but I'm not going deep here.
+
 # Let's see in practice
+
+## But first...
+
+... Check if your target device supports it. From Unity's documentation, those platforms and APIs support it:
+
+- DirectX 11 and DirectX 12 on Windows
+- OpenGL Core 4.1+/ES3.0+ on Windows, macOS, Linux, iOS and Android
+- Metal on macOS and iOS
+- Vulkan on Windows and Android
+- PlayStation 4 and Xbox One
+- WebGL (requires WebGL 2.0 API)
 
 ## Basic example
 
@@ -161,7 +174,7 @@ Shader "Unlit/BasicInstancing"
 
 ```
 
-The cube prefab material uses the shader above and has the option 'Enable GPU Instancing' ticked. The scene is composed only by objects using this same material. As result you can see that we have only one draw for the whole scene below.
+The cube prefab material uses the shader above and has the option 'Enable GPU Instancing' ticked. The scene is composed only by objects using this same material. As result, you can see that we have only one draw call for the whole scene below.
 
 ![Basic Example]({{site.baseurl}}/_drafts/BasicExample.JPG)
 
@@ -462,14 +475,14 @@ Shader "Unlit/TextureInstancing"
 
 ```
 
-In the end we get something like the following image. Note that the container parts can have a different setup by just adjusting their handlers individually.
+In the end, we get something like the following image. Note that the container parts can have a different setup by just adjusting their handlers individually. It's not like "wow, what a beautiful use of GPU instancing!", but it shows you (more or less) what you can do with it.
 
 ![Texture Example]({{site.baseurl}}/_drafts/TextureExample.JPG)
 
 # Conclusion
 
-GPU instancing is a powerful technique that you could be using in your game. You can use your creativity to set different properties per instance in order to give variety to them. You could apply a different vertex offset per instance, or use the instance ID as input for some algorithm to be used in the shader, just to cite some examples.
+GPU instancing is a powerful technique that you could be using in your game. You can use your creativity to set different properties per instance in order to give variety to them. You could, for example, apply a different vertex offset per instance, or even use the instance ID as input for some algorithm in the shader.
 
-This was just a simple and brief introduction to GPU instancing, for more information about the capabilities and limitations of this technique you can check [Unity's documentation](https://docs.unity3d.com/Manual/GPUInstancing.html).
+This was just a simple and brief introduction to GPU instancing in Unity, for more information about the capabilities and limitations of this technique you can check [Unity's documentation](https://docs.unity3d.com/Manual/GPUInstancing.html).
 
-The code use in the examples is available on my github.
+The code and assets used in the examples are available on this [github project](https://github.com/teofilobd/BlogProject).
