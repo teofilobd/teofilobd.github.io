@@ -88,8 +88,8 @@ public class ObjectSpawnerBasic : MonoBehaviour
             GameObject go = Instantiate(m_ObjectPrefab, transform);
             go.transform.parent = transform;
             go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
-            												  Random.Range(0f, 100f), 
-            												  Random.Range(0f, 100f)));
+            Random.Range(0f, 100f), 
+            Random.Range(0f, 100f)));
 
             yield return waitForInterval;
         }
@@ -212,7 +212,7 @@ IEnumerator SpawnObjects()
   	{
     	GameObject go = Instantiate(m_ObjectPrefab, transform);
     	go.transform.parent = transform;
-    	go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
+        go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
                                                           Random.Range(0f, 100f), 
                                                           Random.Range(0f, 100f)));
     	ObjectPropertyHandler oph = go.AddComponent<ObjectPropertyHandler>();
