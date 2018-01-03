@@ -89,7 +89,7 @@ public class ObjectSpawnerBasic : MonoBehaviour
             go.transform.parent = transform;
             go.GetComponent<Rigidbody>().AddForce(new Vector3(Random.Range(0f, 100f), 
             												  Random.Range(0f, 100f), 
-                                    						  Random.Range(0f, 100f)));
+            												  Random.Range(0f, 100f)));
 
             yield return waitForInterval;
         }
