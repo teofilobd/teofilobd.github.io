@@ -55,12 +55,12 @@ Of course there are more pros and cons, but I'm not going deep here.
 
 ... Check if your target device supports it. From Unity's documentation, those platforms and APIs support it:
 
-- DirectX 11 and DirectX 12 on Windows
-- OpenGL Core 4.1+/ES3.0+ on Windows, macOS, Linux, iOS and Android
-- Metal on macOS and iOS
-- Vulkan on Windows and Android
-- PlayStation 4 and Xbox One
-- WebGL (requires WebGL 2.0 API)
+> - DirectX 11 and DirectX 12 on Windows
+> - OpenGL Core 4.1+/ES3.0+ on Windows, macOS, Linux, iOS and Android
+> - Metal on macOS and iOS
+> - Vulkan on Windows and Android
+> - PlayStation 4 and Xbox One
+> - WebGL (requires WebGL 2.0 API)
 
 ## Basic example
 
