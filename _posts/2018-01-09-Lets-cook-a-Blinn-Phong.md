@@ -251,7 +251,7 @@ Some comments about the shader. First, the advantage of using half vector is tha
 
 Second, if you didn't understand the linear- and gamma-space talk, I recommend you to read at least the [Unity documentation about this](https://docs.unity3d.com/Manual/LinearRendering-LinearOrGammaWorkflow.html). In short, your life has been a lie and you don't see what you should see. Softwares for image manipulation or cameras store images in _gamma-space_, but we perform operations in _linear-space_, but then your monitor shows things in _gamma-space_. So, we need to handle this if we care about correctness. 
 
-The good news is that if your target device is support a modern API, it is likely to do this conversion automatically. You just have to set the color space to linear in the player settings (see picture). Otherwise, you do need to convert textures to linear space (pow(texture,2.2)) and convert your final color back to gamma-space in your shader. Be aware that textures that store values with some meaning (e.g. lookup texture) don't need to be stored nor converted to gamma-space,  
+The good news is that if your target device supports a modern API, it is likely to do this conversion automatically. You just have to set the color space to linear in the Unity player settings (see picture). Otherwise, you do need to convert textures to linear space (pow(texture,2.2)) and convert your final color back to gamma-space in your shader. Be aware that textures that store values with some meaning (e.g. lookup texture) don't need to be stored nor converted to gamma-space.  
 
 ![ColorSpaceSettings.JPG]({{site.baseurl}}/images/ColorSpaceSettings.JPG)
 
