@@ -112,7 +112,6 @@ At this point, if you cooked a sphere like I did, you might have a shading like 
 ![Linear.JPG]({{site.baseurl}}/images/Linear.JPG)
 ![Gamma.JPG]({{site.baseurl}}/images/Gamma.JPG)
 
-
 If it is similar to the image on the left, you are done here, go to next section. Otherwise, if you got something like the image on the right, it's necessary to make a little adjustment on your way of cooking. 
 
 The problem is that you cooked **linearly**, but in the end you showed your dish in a **gamma** environment. The good news is that this is easy to fix. Just reduce a bit the temperature of your oven.  
