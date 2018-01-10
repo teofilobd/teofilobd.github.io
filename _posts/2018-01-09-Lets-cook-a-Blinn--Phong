@@ -1,6 +1,12 @@
 ---
 published: true
 ---
+---
+layout: post
+title:  "Let's cook a Blinn-Phong"
+categories: shaders unity
+---
+
 Today I'm going to teach you how to cook a Blinn-Phong. There are days when you want to eat a fancy, tasteful [PBR](https://en.wikipedia.org/wiki/Physically_based_rendering) dish, but sometimes you are hungry and you just want to taste something as good and as simple as a Blinn-Phong. It can be cooked fast, the ingredients are easy to find and you can add the seasoning according to your preferences. 
 
 Blinn-Phong actually comes from Blinn and Phong. Phong was created first and then a portion of Blinn was added on top of it, changing a bit the Phong taste while reducing its cooking time. Fair enough.
