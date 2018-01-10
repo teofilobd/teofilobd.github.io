@@ -28,6 +28,8 @@ If we were talking about code, it would be something like this:
 fixed3 ambient = _AmbientIntensity * _AmbientIntensity;
 ```
 
+![Ambient]({{site.baseurl}}/_drafts/Ambient.JPG)
+
 Like I said, if your oven has convection, the _Ambient_ will spread evenly on your mesh as soon as you cook it.
 
 ## Diffuse
@@ -41,6 +43,8 @@ Again, if we were talking about code (but we are not), we would have something l
 fixed dotNL = max(dot(normalDir, lightDir), 0.0);
 fixed3 diffuse = _DiffuseIntensity * _DiffuseColor * dotNL;
 ```
+
+![Diffuse.JPG]({{site.baseurl}}/_drafts/Diffuse.JPG)
 
 ## Specular
 
@@ -78,6 +82,8 @@ Whether you choose Phong or Blinn-Phong, take what you have, take the _Specular 
 fixed3 specular = _SpecularIntensity * _SpecularColor * specContrib;
 ```
 
+![Specular.JPG]({{site.baseurl}}/_drafts/Specular.JPG)
+
 ## Finally
 
 Once you prepared your ambient, diffuse and specular, you are ready to mix them up. Then, just do it.
@@ -93,11 +99,15 @@ fixed3 col = tex2D(_MainTex, i.uv);
 finalColor *= col;
 ```
 
+![BlinnPhongTexture.JPG]({{site.baseurl}}/_drafts/BlinnPhongTexture.JPG)
+
 That's almost it!
 
-At this point, if you cooked a sphere like I did, you might have something like one of these images.
+At this point, if you cooked a sphere like I did, you might have a shading like one of these images (without the texture).
 
-[Images]
+![Linear.JPG]({{site.baseurl}}/_drafts/Linear.JPG)
+![Gamma.JPG]({{site.baseurl}}/_drafts/Gamma.JPG)
+
 
 If it is similar to the image on the left, you are done here, go to next section. Otherwise, if you got something like the image on the right, it's necessary to make a little adjustment on your way of cooking. 
 
@@ -121,6 +131,6 @@ Second, if you didn't understand the linear- and gamma-space talk, I recommend y
 
 The good news is that if your target device is support a modern API, it is likely to do this conversion automatically. You just have to set the color space to linear in the player settings (see picture). Otherwise, you do need to convert textures to linear space (pow(texture,2.2)) and convert your final color back to gamma-space in your shader. Be aware that textures that store values with some meaning (e.g. lookup texture) don't need to be stored nor converted to gamma-space,  
 
-
+![ColorSpaceSettings.JPG]({{site.baseurl}}/_drafts/ColorSpaceSettings.JPG)
 
 Cheers!
