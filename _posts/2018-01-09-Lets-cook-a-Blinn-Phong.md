@@ -124,7 +124,7 @@ That's it, folks!
 
 -----
 
-# Some final comments
+# Some final thoughts
 
 Now let's put the silliness aside a bit. Blinn-Phong reflection model is well known and has explanations everywhere, here I was just trying to do something different. You can find the full shader source code below and also on my github. I plan to use this shader as starting point for some other posts.
 
