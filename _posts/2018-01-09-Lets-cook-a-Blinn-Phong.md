@@ -109,7 +109,7 @@ That's almost it!
 
 At this point, if you cooked a sphere like I did, you might have a shading like one of these images (without the texture).
 
-<img src="{{site.baseurl}}/images/Linear.JPG" width="200">
+
 ![Linear.JPG]({{site.baseurl}}/images/Linear.JPG) {{:height="36px" width="36px"}}
 ![Gamma.JPG]({{site.baseurl}}/images/Gamma.JPG)
 
