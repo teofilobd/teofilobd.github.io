@@ -2,7 +2,7 @@
 published: true
 layout: post
 title: Let's cook a Blinn-Phong
-date: '2015-11-17 16:16:01 -0600'
+date: '2018-01-09'
 categories: shaders unity
 ---
 Today I'm going to teach you how to cook a Blinn-Phong. There are days when you want to eat a fancy, tasteful [PBR](https://en.wikipedia.org/wiki/Physically_based_rendering) dish, but sometimes you are hungry and you just want to taste something as good and as simple as a Blinn-Phong. It can be cooked fast, the ingredients are easy to find and you can add the seasoning according to your preferences. 
