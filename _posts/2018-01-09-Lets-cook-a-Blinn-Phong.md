@@ -13,11 +13,11 @@ Blinn-Phong actually comes from Blinn and Phong. Phong was created first and the
 
 # Ingredients
 
-> 1 Ambient color  
-> 1 Diffuse color  
-> 1 Specular color  
-> Shininess (according to taste)  
-> 1 Mesh (according to taste)
+> - 1 Ambient color  
+> - 1 Diffuse color  
+> - 1 Specular color  
+> - Shininess (according to taste)  
+> - 1 Mesh (according to taste)
 
 # Directions
 
