@@ -109,8 +109,8 @@ That's almost it!
 
 At this point, if you cooked a sphere like I did, you might have a shading like one of these images (without the texture).
 
-<img src="{{site.baseurl}}/images/Linear.JPG" width="350">
-<img src="{{site.baseurl}}/images/Gamma.JPG" width="350">
+<img src="{{site.baseurl}}/images/Linear.JPG" height="335">
+<img src="{{site.baseurl}}/images/Gamma.JPG" height="335">
 
 If it is similar to the image on the left, you are done here, go to next section. Otherwise, if you got something like the image on the right, it's necessary to make a little adjustment on your way of cooking. 
 
