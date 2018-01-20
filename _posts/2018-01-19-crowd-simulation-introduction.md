@@ -1,5 +1,10 @@
 ---
 published: false
+layout: post
+date: '2018-01-19'
+categories:
+  - crowd simulation
+title: Introduction to Crowd Simulation
 ---
 This post is the first of a series about crowd simulation. "_Why crowd simulation specifically ?_" one might ask. And I say it's because I studied crowd simulation for several years and, although I do not work on this subject anymore, I do like to talk about it. 
 
