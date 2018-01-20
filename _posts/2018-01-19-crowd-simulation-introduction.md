@@ -18,7 +18,7 @@ Simulating a crowd is challeging because it involves not only steering the agent
 
 # Application
 
-There are different applications for crowd simulators. They can be used in videogames, such as we have seen in Kameo, Assassin's creed series and Dead rising series, for example. The following videos show footages of Assassin's Creed Unity and the recent Planet Coaster (check [this gamasutra article](https://www.gamasutra.com/view/news/288020/Game_Design_Deep_Dive_Creating_believable_crowds_in_Planet_Coaster.php))
+There are different applications for crowd simulators. They can be used in videogames, such as we have seen in Kameo, Assassin's creed series and Dead rising series, for example. The following videos show footages of Assassin's Creed Unity and the recent Planet Coaster (check [this gamasutra article](https://www.gamasutra.com/view/news/288020/Game_Design_Deep_Dive_Creating_believable_crowds_in_Planet_Coaster.php)).
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zJppUe1D-ZA" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xogpwPAd2rA" frameborder="0" allowfullscreen></iframe>
