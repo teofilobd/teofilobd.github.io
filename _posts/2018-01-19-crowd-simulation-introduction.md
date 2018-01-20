@@ -19,24 +19,25 @@ Simulating a crowd is challeging because it involves not only steering the agent
 # Application
 
 There are different applications for crowd simulators. They can be used in videogames, such as we have seen in Kameo, Assassin's creed series and Dead rising series, for example. The following videos show footages of Assassin's Creed Unity and the recent Planet Coaster (check [this gamasutra article](https://www.gamasutra.com/view/news/288020/Game_Design_Deep_Dive_Creating_believable_crowds_in_Planet_Coaster.php)).
-
+  
 <br>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/zJppUe1D-ZA" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/xogpwPAd2rA" frameborder="0" allowfullscreen></iframe>
-
+  
+  
 They are also useful in the architectural engineering field. When designing a stadium, for example, one need to place exit doors in order to optimize the evacuation of people in an emergency situation. Crowd simulators can be used to help this kind of design. Some simulators can even give information about the build up pressure when human traffic jams happen.
-
+  
 <iframe width="560" height="315" src="https://www.youtube.com/embed/97QIFsVqeh4" frameborder="0" allowfullscreen></iframe>
-
+  
 Some crowd simulators are intended to study the human behavior and try to faithfully replicate it from ground truth. Several emerging patterns can be observed within real crowds interactions and these simulators try to reach that.
-
+  
 <iframe width="560" height="315" src="https://www.youtube.com/embed/JbQe19DyUMc" frameborder="0" allowfullscreen></iframe>
-
+  
 Finally, crowd simulators can be used in movies and TV series, of course. Lord of the rings, world war z, the walking dead, game of thrones, just to cite a few examples.
-
+  
 <iframe width="560" height="315" src="https://www.youtube.com/embed/cr5Cwz-5Wsw" frameborder="0" allowfullscreen></iframe>
 <iframe width="560" height="315" src="https://www.youtube.com/embed/jC2igrqqIC0" frameborder="0" allowfullscreen></iframe>
-
+  
 > Trivia: the Massive software was specially developed for Lord of the rings.
 
 > Trivia 2: Golaem is the Maya plugin used in TV series like Game of Thrones and The Walking Dead.
