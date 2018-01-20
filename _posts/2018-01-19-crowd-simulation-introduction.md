@@ -50,7 +50,7 @@ Perhaps the most important, and consequently the most investigated, part of a cr
 
 The global navigator is responsible for managing the global goals of the agents. For example, an agent starts at A and has to go to B, once it gets to B the global navigator update its objective and now the agent knows that it has to go to C, and so on. You probably already heard about the algorithm A*, it is a extended Djikstra broadly used for global navigation or at least used as inspiration for some other algorithms. If instead of moving point-to-point we are interested in moving from a set of points within an area to another set of points, we can resort then to a navigation mesh, that represents the navigable space within an environment and this way provides more options of movement.
 
-![nav_systems.jpg]({{site.baseurl}}/_posts/nav_systems.jpg)
+![nav_systems.jpg]({{site.baseurl}}/images/nav_systems.jpg)
 Difference of paths when moving between waypoints and using a navigation mesh (found this image [here](https://docs.unrealengine.com/udk/Three/AIAndNavigationHome.html)).
 
 A local navigator is responsible for making the agent move safely from A to B. The main task here is to avoid collisions with static and dynamic obstacles. There are several approaches to solve this, agents can: be endowed with cooperative rules, be treated as particles in a particle system, move according flow fields, react according to their synthetic vision, adjust their velocities reciprocally, among many others approaches that you can find the literature.    
@@ -68,9 +68,11 @@ This was a brief introduction to crowd simulation, not very deep but with some u
 Here are some references for those that want more info about this field.
 
 Books
+
 [Simulating Heterogeneous Crowds with Interactive Behaviors](https://www.amazon.com/Simulating-Heterogeneous-Crowds-Interactive-Behaviors/dp/1498730361/)
 
 [Crowd simulation](https://www.amazon.com/Crowd-Simulation-Daniel-Thalmann/dp/144714449X/)
+
 
 Articles
 
