@@ -71,6 +71,7 @@ The global navigator is responsible for managing the global goals of the agents.
 ![nav_systems.jpg]({{site.baseurl}}/images/nav_systems.jpg)
 Difference of paths when moving between waypoints and using a navigation mesh (found this image [here](https://docs.unrealengine.com/udk/Three/AIAndNavigationHome.html)).
 <br>
+  
 
 A local navigator is responsible for making the agent move safely from A to B. The main task here is to avoid collisions with static and dynamic obstacles. There are several approaches to solve this, agents can: be endowed with cooperative rules, be treated as particles in a particle system, move according flow fields, react according to their synthetic vision, adjust their velocities reciprocally, among many others approaches that you can find the literature.    
 
