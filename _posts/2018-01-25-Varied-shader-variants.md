@@ -17,6 +17,7 @@ A solution for this problem is to create variants of your shader.
 
 <br>
 # How does it work ?
+<br>
 
 While writing your shader, the pieces of code that you want to be able to enable/disable need to be placed between the following directives, where `MYMACRO` is user-defined.
 
@@ -38,7 +39,9 @@ So, what happens next? Now, Unity will compile two shaders for you. One without 
 
 You can now select what shader to use at runtime by enabling/disabling the macro `MY_MACRO` using either `Material.EnableKeyword()/.DisableKeyword()` (per material) or `Shader.EnableKeyword()/.DisableKeyword()` (globally).
 
+<br>
 # Upgrading the Blinn-Phong shader
+<br>
 
 Let's upgrade [our shader](https://teofilobd.github.io/shaders/unity/2018/01/09/Lets-cook-a-Blinn-Phong.html) by creating four different pieces of code. One for each different contribution (_Ambient_, _Diffuse_, _Specular Phong_, _Specular Blinn-Phong_). Let's use the following macros: `USE_AMBIENT`, `USE_DIFFUSE`, `USE_SPECULAR_PHONG`, `USE_SPECULAR_BLINNPHONG`. Now, we need to say to Unity that we want to have the following combination of pieces of code:
 
@@ -90,8 +93,9 @@ The third uses the `KeywordEnumDrawer` and allows us to create a combo box with 
 // Will set USE_SPECULAR_NONE,  USE_SPECULAR_PHONG or USE_SPECULAR_BLINNPHONG.
 [KeywordEnum(None, Phong, BlinnPhong)] Use_Specular ("Choose Specular", Float) = 0
 ```
-
+<br>
 # Blinn-Phong with variants
+<br>
 
 So, the final code is the following:
 
@@ -253,8 +257,9 @@ Note that every option will appear only in the settings where they are needed. F
 
 ![CompileAndShowCode.jpg]({{site.baseurl}}/images/CompileAndShowCode.JPG)
 
-
+<br>
 # Final thoughts
+<br>
 
 Shader variants is a very powerful feature that you can use to create different variations of a shader in order to use sets of features only when they are needed and this way avoiding wasting GPU resources.
 
@@ -267,7 +272,9 @@ Last but not least, if you will not change the features of a shader during runti
 
 That's it for today!
 
+<br>
 # References
+<br>
 
 [Shader variants - Unity's doc](https://docs.unity3d.com/Manual/SL-MultipleProgramVariants.html)
 [Material property drawers - Unity's doc](https://docs.unity3d.com/ScriptReference/MaterialPropertyDrawer.html)
