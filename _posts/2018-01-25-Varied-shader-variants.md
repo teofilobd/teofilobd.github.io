@@ -9,11 +9,10 @@ categories:
 ---
 Let's assume that you are using the Blinn-Phong shader from [this post](https://teofilobd.github.io/shaders/unity/2018/01/09/Lets-cook-a-Blinn-Phong.html) and at some point in your game you don't want to use the specular contribution for some reason. Then, what do you do? you set the Specular intensity to zero and problem solved. Visually, you achieved your result, however your shader is still doing the specular computation, but it is being nulled by the zero intensity. This is a simple example, but now imagine how much wasted computation you would have with a more complex shader with several different settings.
 	
-    
-    
-    
-    
-
+										
+                                        
+                                        
+                                        
 > One can say that an 'if' condition could be used. Yes, but NO. Branching your shader code is terrible for its execution on GPU. There is a good and illustrated explanation about what happens [here in section 3.7](https://simonschreibt.de/gat/renderhell-book2/). 
 
 
