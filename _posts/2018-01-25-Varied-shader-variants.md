@@ -93,7 +93,7 @@ The third uses the `KeywordEnumDrawer` and allows us to create a combo box with 
 ```
 
 <br>
-So, the final code is the following:
+In the end, our final code looks like this:
 
 ```ShaderLab
 Shader "Unlit/BlinnPhongSV"
