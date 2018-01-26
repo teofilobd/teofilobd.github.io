@@ -253,7 +253,7 @@ Despite its usefulness, we need also to be aware about the problems that shader 
 2. As the number of variants increase, more time will be needed to compile them and to build your game. And greater will be the size of your build.
 3. Loading several shader variants during the game can affect its performance ([Create ShaderVariantCollections and preload them](https://docs.unity3d.com/Manual/OptimizingShaderLoadTime.html)).
 
-Last but not least, if you will not change the features of a shader during runtime, use '#pragma shader_feature' instead of '#pragma multi_compile'. Only the variants with the setup previously set will be included in the build. 
+Last but not least, if you will not change the features of a shader during runtime, use `#pragma shader_feature` instead of `#pragma multi_compile`. Only the variants with the setup previously set will be included in the build. 
 
 That's it for today!
 
