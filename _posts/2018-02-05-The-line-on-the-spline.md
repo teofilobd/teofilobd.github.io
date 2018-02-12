@@ -33,7 +33,7 @@ Where _p0_, _p1_, _p2_ and _p3_ are four control points and _t_ ([0,1]) is the l
 1. The point is computed between _p1_ and _p2_, i.e., _p0_ and _p3_ are only used to help computing the curve.
 2. We need at least four points to create a curve.
 
-> You can create a spline using only linear interpolations. A simple interpolation between two points `Vector3.Lerp(p1, p2, t);` is considered a linear curve. If you interpolate two linear curvers `Vector3.Lerp(Vector3.Lerp(p1, p2, t), Vector3.Lerp(p2, p3, t), t);` you have a quadratic curve. Well, my friend, you can interpolate as many interpolations you want. The interpolation of two quadratic curves will give you a cubic curve `Vector3.Lerp(Vector3.Lerp(Vector3.Lerp(p1, p2, t), Vector3.Lerp(p2, p3, t), t), Vector3.Lerp(Vector3.Lerp(p2, p3, t), Vector3.Lerp(p3, p4, t), t), t);`. Those are the famous linear, quadratic and cubic Bèzier curves.
+> You can create a spline using only linear interpolations. A simple interpolation between two points `Vector3.Lerp(p1, p2, t);` is considered a linear curve. If you interpolate two linear curves `Vector3.Lerp(Vector3.Lerp(p1, p2, t), Vector3.Lerp(p2, p3, t), t);` you have a quadratic curve. Well, my friend, you can interpolate as many interpolations you want. The interpolation of two quadratic curves will give you a cubic curve `Vector3.Lerp(Vector3.Lerp(Vector3.Lerp(p1, p2, t), Vector3.Lerp(p2, p3, t), t), Vector3.Lerp(Vector3.Lerp(p2, p3, t), Vector3.Lerp(p3, p4, t), t), t);`. Those are the famous linear, quadratic and cubic Bèzier curves.
 
 # Drawing the spline
 
@@ -41,15 +41,17 @@ Before starting our line renderer, it would be nice to see if the spline computa
 
 Let's start by declaring some variables to define the shape of our spline: an array of control points `m_ControlPoints` and a step size value `m_StepSize`. We are then going to create intermediate points on the spline with the distance of a step size between them.
 
-Like said in the previous section, a location between two points can be retrieved with a `t` value between 0 and 1. Each existing spline between two points will range from 0 to 1. In other words, for six control points (p0, ..., p5), for example, we will have three splines (p1 -> p2, p2 -> p3, p3 -> p4) each of them range from 0 to 1 and a "total t" with lenght of 3.
+Like said in the previous section, a location between two points can be retrieved with a `t` value between 0 and 1. Each existing spline between two points will range from 0 to 1. In other words, for six control points (_cp[0]_, ..., _cp[5]_), for example, we will have three splines (_cp[1]_ -> _cp[2]_, _cp[2]_ -> _cp[3]_, _cp[3]_ -> _cp[4]_) each of them ranging from 0 to 1 and a "_total t_" with lenght of 3. 
+
+> Be aware that, despite being separated by the same step size, the points are not separated by the same distance.
 
 Then, the way the intermediate points are computed is the following:
-1. Initialize "local t" and "global t" with 0, and the "total t" with the number of control points minus one.
-2. Get the four initial control points (cp[0], cp[1], cp[2], cp[3]).
-3. Compute intermediate point with "local t" and increase "local t" with a step size.
-4. If "local t" is greater than 1, subtract 1 from "local t", increment "global t" by one and update the four points for the next four consecutive control points. 
-5.  If "global t" is smaller than "total t", return to (3).
-6. Compute last intermediate point (which is actually at cp[cp.Length - 1]).
+1. Initialize "_local t_" and "_global t_" with 0, and the "_total t_" with the number of control points minus one.
+2. Get the four initial control points (_cp[0]_, _cp[1]_, _cp[2]_, _cp[3]_).
+3. Compute intermediate point with "_local t_" and increase "_local t_" with a step size.
+4. If "_local t_" is greater than 1, subtract 1 from "_local t_", increment "_global t_" by one and update the four points for the next four consecutive control points. 
+5.  If "_global t_" is smaller than "_total t_", return to (3).
+6. Compute last intermediate point (which is actually at _cp[cp.Length - 1]_).
 
 And this is the code:
 ```C#
@@ -96,9 +98,9 @@ public void GenerateIntermediatePoints()
 
 Now we have all we need to create our line renderer. The objective here is simple, for each interval of two consecutive intermediate points (a segment), we are going to create two triangles forming a quad. The orientation of these quads will be determined by the orientation of the segment and a normal user-defined. We will need also a new variable `m_LineWidth` that defines... the line width.    
 
-We start by taking the two first intermediate points (ip[0] and ip[1]) and computing the segment direction between them (ip[1] - ip[0]). With the segment direction and the user-defined normal, we are able to compute the perpendicular direction that will help us to position the four vertices needed to create our quad. 
+We start by taking the two first intermediate points (_ip[0]_ and _ip[1]_) and computing the segment direction between them (_ip[1] - ip[0]_). With the segment direction and the user-defined normal, we are able to compute the perpendicular direction that will help us to position the four vertices needed to create our quad. 
 
-To compute that perpendicular vector, we only need to do a Cross(segmentDirection, normalDirection). That's it, the cross product gives us a vector perpendicular to the plane formed by the other two vectors provided.
+To compute that perpendicular vector, we only need to do a _Cross(segmentDirection, normalDirection)_. That's it, the cross product gives us a vector perpendicular to the plane formed by the other two vectors provided.
 > Remember that Unity uses left-hand coordinates, i.e., the cross product follows the left-hand rule.
 
 Let's call this new direction as width direction. Now, with both width direction and segment direction we are able to compute the vertices and define the two triangles of this segment. The vertices are computed as follows:
@@ -107,7 +109,7 @@ Let's call this new direction as width direction. Now, with both width direction
 3. v[2] = ip[1] + widthDirection * 0.5.
 4. v[3] = ip[1] - widthDirection * 0.5.
 
-And then we can define our triangles as (v[0], v[2], v[1]) and (v[1], v[2], v[3]) (clockwise order to render properly (if Unity had right-hand coordinates, it would be counter-clockwise)). The following image shows everybody in their places:
+And then we can define our triangles as (_v[0]_, _v[2]_, _v[1]_) and (_v[1]_, _v[2]_, _v[3]_) (clockwise order to render properly (if Unity had right-hand coordinates, it would be counter-clockwise)). The following image shows everybody in their places:
 
 ![splineRenderer_triangles]({{site.baseurl}}/images/splineRenderer_triangles.JPG)
 
@@ -152,11 +154,11 @@ void AddTriangle(int id1, int id2, int id3)
 }
 ```
 
-Once all the vertices are defined, we need to create our mesh on Unity. The procedure is: instantiate a Mesh, set the vertices, set the triangles, recalculate the bounds, recalculate the normals. Finally, add a MeshFilter, set the mesh to it and then add a MeshRenderer.
+Once all the vertices are defined, we need to create our mesh on Unity. The procedure is: instantiate a _Mesh_, set the _vertices_, set the _triangles_, recalculate the bounds, recalculate the normals. Finally, add a _MeshFilter_, set the _Mesh_ to it and then add a _MeshRenderer_.
 
-# Doing fancy stuff
+# Improving some stuff
 
-The results is already okay-ish, but it can be improved. The intermediate vertices are oriented according to the previous segment direction and it does not look good, specially when the curve is very tight (check the following image).
+The result is already okay-ish, but it can be improved. The intermediate vertices are oriented according to the previous segment direction and it does not look good, specially when the curve is very tight (check the following image).
 
 ![badCurve]({{site.baseurl}}/images/splineRenderer_badCurve.JPG)
 
