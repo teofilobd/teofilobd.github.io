@@ -12,22 +12,22 @@ categories:
 Continuing the series about crowd simulation that I started in [this post](https://teofilobd.github.io/crowd%20simulation/2018/01/19/crowd-simulation-introduction.html), today I'll talk about the A\* (A-Star) algorithm. The A\* can be thought as a global path planner in your game, where given a set of waypoints in the environment, it will tell to an agent what specific waypoints it has to pass through in order to reach its final goal location. The interactions while moving between waypoints have to be handled by a local planner, but this is subject for other posts.
 
 
-# A-Star
+## A-Star
 
 
-## Prepare stuff
+### Prepare stuff
 
 Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the spheres are representing the location of waypoints that I placed arbitrarily. 
 
 ![Waypoints]({{site.baseurl}}/images/Waypoints.JPG)
 
-## Preprocess stuff
+### Preprocess stuff
 
 Now, for each pair of different waypoints, we:
 - Check if they are neighbors, i.e., there is no obstacle between them. If so, we keep this information.
 - Compute the euclidian distance (straight line) between them (even if they are not neighbors).
 
-## Compute path
+### Compute path
 
 This is the main part of the algorithm. Here, given a starting waypoint and an ending waypoint, the algorithm has to return a list of waypoints forming the shortest path (minimal cost according to constraints provided) from start to end.
 
@@ -49,7 +49,7 @@ It might be a bit confuse, I didn't give my best to write that. The following gi
 <img src="{{site.baseurl}}/images/AStar.gif" height="335">
 <img src="{{site.baseurl}}/images/Dijkstra.gif" height="335">
 
-## Code
+### Code
 
 This code shows the preproces and path finding phases. You will find the full source code in the repository (link is in the end of this post). The code will probably change when I start adding more stuff in the repository, but I will try to keep this updated.
 
@@ -183,7 +183,7 @@ public Stack<Waypoint> GetPath(Waypoint startWaypoint, Waypoint endWaypoint)
 }
 ```
 
-# Considerations
+## Considerations
 
 This is just a naive implementation to give a general idea about the A\*. This is an old algorithm and several improvements have been made to it since its first appearance. Also, it would be impossible to describe a general solution, given that each game has its own demands and restrictions. The heuristics used has to be adapted accordingly. For example, one might add cost for slopes in terrain or for areas considered dangerous in the environment. 
 
