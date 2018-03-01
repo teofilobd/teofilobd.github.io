@@ -43,7 +43,7 @@ The algorithm is something like:
 It might be a bit confuse, I didn't give my best to write that. The following gifs show the difference between A* (left) and Dijkstra (right), where the blue sphere is the ending waypoint, black is a visited waypoint, the range from yellow to red shows the cost (yellow -> low, red -> high) and green is the final path.  
 
 ![astar]({{site.baseurl}}/images/AStar.gif)
-![dijkstra]({{site.baseurl}}/images/Djikstra.gif)
+![dijkstra]({{site.baseurl}}/images/Dijkstra.gif)
 
 
 # Code
