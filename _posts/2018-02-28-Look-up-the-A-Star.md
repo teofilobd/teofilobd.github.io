@@ -11,7 +11,9 @@ categories:
 
 Continuing the series about crowd simulation that I started in [this post](https://teofilobd.github.io/crowd%20simulation/2018/01/19/crowd-simulation-introduction.html), today I'll talk about the A\* (A-Star) algorithm. The A\* can be thought as a global path planner in your game, where given a set of waypoints in the environment, it will tell to an agent what specific waypoints it has to pass through in order to reach its final goal location. The interactions while moving between waypoints have to be handled by a local planner, but this is subject for other posts.
 
+
 # A-Star
+
 
 ## Prepare stuff
 
