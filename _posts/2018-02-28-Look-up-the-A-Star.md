@@ -1,5 +1,5 @@
 ---
-published: false
+published: true
 layout: post
 title: 'Look up the A-Stars, look how they shine for you'
 date: '2018-02-28'
