@@ -9,46 +9,49 @@ categories:
   - path-planning
 ---
 
-Continuing the series about crowd simulation that I started in [this post](https://teofilobd.github.io/crowd%20simulation/2018/01/19/crowd-simulation-introduction.html), today I'll talk about the A* (A-Star) algorithm. The A* can be thought as a global path planner in your game, where given a set of waypoints in the environment, it will tell to an agent what specific waypoints it has to pass through in order to reach its final goal location. The interactions while moving between waypoints have to be handled by a local planner, but this is subject for other posts.
+Continuing the series about crowd simulation that I started in [this post](https://teofilobd.github.io/crowd%20simulation/2018/01/19/crowd-simulation-introduction.html), today I'll talk about the A\* (A-Star) algorithm. The A\* can be thought as a global path planner in your game, where given a set of waypoints in the environment, it will tell to an agent what specific waypoints it has to pass through in order to reach its final goal location. The interactions while moving between waypoints have to be handled by a local planner, but this is subject for other posts.
 
+<br>
 # A-Star
+<br>
 
 ## Prepare stuff
 
-Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the wired spheres are representing the location of the waypoints that I placed arbitrarily. 
+Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the spheres are representing the location of waypoints that I placed arbitrarily. 
 
 ![Waypoints]({{site.baseurl}}/images/Waypoints.JPG)
 
-# Preprocess stuff
+## Preprocess stuff
 
 Now, for each pair of different waypoints, we:
 - Check if they are neighbors, i.e., there is no obstacle between them. If so, we keep this information.
-- Compute the euclidian distance between them (even if they are not neighbors).
+- Compute the euclidian distance (straight line) between them (even if they are not neighbors).
 
-# Compute path
+## Compute path
 
 This is the main part of the algorithm. Here, given a starting waypoint and an ending waypoint, the algorithm has to return a list of waypoints forming the shortest path (minimal cost according to constraints provided) from start to end.
 
-From the starting point, we compute the cost of moving to the neighbors and keep those neighbors as candidates for the next move. We then select the candidate with lesser cost, compute the cost of moving to its non-visited neighbors and add them to the list of candidates, and so on until there are no more candidates to evaluate. Every time we update the cost of moving to a neighbor we keep track of the waypoint where we should move from. This, as it is, is the famous [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), the difference from the A* will be the addition of a [heuristic](https://en.wikipedia.org/wiki/Heuristic_(computer_science)) when sampling the next waypoint candidate. Here, I will compute the cost of moving from a waypoint A to a waypoint B as `cost(A) + distance(A, B)` where `cost(A)` returns the cost from the starting waypoint to waypoint A and distance is the euclidian distance between two waypoints. However, in my example, when sampling a candidate I want to get one that has `min(cost(candidate) + distance(candidate, endpoint))`, i.e., I will give preference to the one that has low cost and is close to the ending waypoint at same time. The heuristic allows us to obtain our result more quickly and it can be whatever you want or makes sense in your path finding, not necessarily distances.
+From the starting point, we compute the cost of moving to the neighbors and keep those neighbors as candidates for the next move. We then select the candidate with lesser cost, compute the cost of moving to its non-visited neighbors and add them to the list of candidates, and so on until there are no more candidates to evaluate. Every time we update the cost of moving to a neighbor we keep track of the waypoint where we should move from. This, as it is, is the famous [Dijkstra's algorithm](https://en.wikipedia.org/wiki/Dijkstra%27s_algorithm), the difference from the A\* will be the addition of a [heuristic](https://en.wikipedia.org/wiki/Heuristic_(computer_science)) when sampling the next waypoint candidate. 
+
+Here, I will compute the cost of moving from a waypoint A to a waypoint B as `cost(A) + distance(A, B)` where `cost(A)` returns the cost from the starting waypoint to waypoint A and `distance()` returns the euclidian distance between two waypoints. However, in my example, when sampling a candidate I want to get one that has `min(cost(candidate) + distance(candidate, endpoint))`, i.e., I will give preference to the one that has low cost and is close to the ending waypoint at same time. The heuristic allows us to obtain our result more quickly and it can be whatever you want or makes sense in your path finding, not necessarily distances.
 
 The algorithm is something like:
-1. Compute the cost of the start waypoint, which is... 0. Actually, this first value does not matter.
+1. Compute the cost of the starting waypoint, which is... 0. Actually, this first value does not matter.
 2. Add this waypoint to a list sorted by cost (or priority queue or something with the same purpose).
-3. If the list is not empty, take the first waypoint (or last, it depends on how you sort, take the one with lesser cost). Otherwise, go to 6. 
-4. If the current waypoint is the end waypoint, go to 6.
+3. If the list is not empty, take the first waypoint (or last, it depends on how you sort, take the one with lesser cost). Otherwise, go to 7. 
+4. If the current waypoint is the end waypoint, go to 7.
 5. For each neighbor, compute the cost of moving there from the current waypoint. If that cost is lesser then the current cost, set the new cost and set the current waypoint as neighbor's parent and add this neighbor to the list (adding the distance to the ending point to its cost).
 6. Go to 3.
 7. If the last waypoint taken is the end waypoint, track back the path using the waypoints' parent information. Otherwise, there is no path from start to end.
 
-It might be a bit confuse, I didn't give my best to write that. The following gifs show the difference between A* (left) and Dijkstra (right), where the blue sphere is the ending waypoint, black is a visited waypoint, the range from yellow to red shows the cost (yellow -> low, red -> high) and green is the final path.  
+It might be a bit confuse, I didn't give my best to write that. The following gifs show the difference between A\* (left) and Dijkstra (right), where the blue sphere is the ending waypoint, black is a visited waypoint, the range from yellow to red shows the cost (yellow -> low, red -> high) and green is the final path.  
 
-![astar]({{site.baseurl}}/images/AStar.gif)
-![dijkstra]({{site.baseurl}}/images/Dijkstra.gif)
+<img src="{{site.baseurl}}/images/AStar.gif" height="335">
+<img src="{{site.baseurl}}/images/Dijkstra.gif" height="335">
 
+## Code
 
-# Code
-
-This is code shows the preprocess and path finding methods. You will find the full source code in the repository (link is in the end of this post). The code will probably change when I starting adding more stuff in the repository, but I will try to keep this updated.
+This code shows the preproces and path finding phases. You will find the full source code in the repository (link is in the end of this post). The code will probably change when I start adding more stuff in the repository, but I will try to keep this updated.
 
 ```C#
 /// Check for viable paths and compute distances between waypoints.
@@ -182,11 +185,10 @@ public Stack<Waypoint> GetPath(Waypoint startWaypoint, Waypoint endWaypoint)
 
 # Considerations
 
-This is just a naive implementation to give a general idea about the A*. This is an old algorithm and several improvements have been made to it since its first appearance. Also, it would be impossible to describe a general solution, given that each game has its own demands and restrictions. The heuristics used has to be adapted accordingly. For example, one might add cost for slopes in terrain or for areas considered dangerous in the environment. 
+This is just a naive implementation to give a general idea about the A\*. This is an old algorithm and several improvements have been made to it since its first appearance. Also, it would be impossible to describe a general solution, given that each game has its own demands and restrictions. The heuristics used has to be adapted accordingly. For example, one might add cost for slopes in terrain or for areas considered dangerous in the environment. 
 
-I created this [new separate repository](https://github.com/teofilobd/Crowd-simulation) only for crowd simulation stuff. This A* implementation is already there. 
+I created this [new separate repository](https://github.com/teofilobd/Crowd-simulation) only for crowd simulation stuff. This A\* implementation is already there. 
 
 The next post in this series will probably be about navigation meshes. Stay tuned.
 
 ![astar_agents]({{site.baseurl}}/images/AStar_agents.gif)
-
