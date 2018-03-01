@@ -17,7 +17,7 @@ Continuing the series about crowd simulation that I started in [this post](https
 
 Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the wired spheres are representing the location of the waypoints that I placed arbitrarily. 
 
-![splineRenderer_triangles]({{site.baseurl}}/images/Waypoints.JPG)
+![Waypoints]({{site.baseurl}}/images/Waypoints.JPG)
 
 # Preprocess stuff
 
@@ -42,6 +42,8 @@ The algorithm is something like:
 
 It might be a bit confuse, I didn't give my best to write that. The following gifs show the difference between A* (left) and Dijkstra (right), where the blue sphere is the ending waypoint, black is a visited waypoint, the range from yellow to red shows the cost (yellow -> low, red -> high) and green is the final path.  
 
+![astar]({{site.baseurl}}/images/AStar.gif)
+![dijkstra]({{site.baseurl}}/images/Djikstra.gif)
 
 
 # Code
@@ -185,3 +187,6 @@ This is just a naive implementation to give a general idea about the A*. This is
 I created this [new separate repository](https://github.com/teofilobd/Crowd-simulation) only for crowd simulation stuff. This A* implementation is already there. 
 
 The next post in this series will probably be about navigation meshes. Stay tuned.
+
+![astar_agents]({{site.baseurl}}/images/AStar_agents.gif)
+
