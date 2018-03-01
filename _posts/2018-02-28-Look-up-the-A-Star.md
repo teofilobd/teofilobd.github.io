@@ -17,7 +17,7 @@ Continuing the series about crowd simulation that I started in [this post](https
 
 Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the wired spheres are representing the location of the waypoints that I placed arbitrarily. 
 
-[image]
+![splineRenderer_triangles]({{site.baseurl}}/images/Waypoints.JPG)
 
 # Preprocess stuff
 
