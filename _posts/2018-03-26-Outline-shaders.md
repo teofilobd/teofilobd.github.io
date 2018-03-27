@@ -9,7 +9,7 @@ categories:
   - outline
 ---
 
-Going straight to the point. Here are 3.5 ways of making outlines.
+Going straight to the point. Here are 3.5 ways of creating outlines.
 
 ## 1) Inverted hull
 
