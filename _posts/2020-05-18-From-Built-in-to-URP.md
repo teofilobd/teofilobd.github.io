@@ -133,9 +133,9 @@ Unity has a bunch of texture/sampler macros to improve cross compatibility betwe
 
 Built-in              | URP                   
 --------------------- | --------------------- 
-**UNITY_DECLARE_TEX2D**(*name*) | **TEXTURE2D_PARAM**(*textureName*, *samplerName*)  
-**UNITY_DECLARE_TEX2D_NOSAMPLER**(*name*) | **TEXTURE2D**(*textureName*)
-**UNITY_DECLARE_TEX2DARRAY**(*name*) | **TEXTURE2D_ARRAY_PARAM**(*textureName*, *samplerName*)  
+**UNITY_DECLARE_TEX2D**(*name*) | **TEXTURE2D**(*textureName*); **SAMPLER**(*samplerName*);  
+**UNITY_DECLARE_TEX2D_NOSAMPLER**(*name*) | **TEXTURE2D**(*textureName*);
+**UNITY_DECLARE_TEX2DARRAY**(*name*) | **TEXTURE2D_ARRAY**(*textureName*); **SAMPLER(*samplerName*); 
 **UNITY_SAMPLE_TEX2D**(*name*, *uv*) | **SAMPLE_TEXTURE2D**(*textureName*, *samplerName*, *coord2*)
 **UNITY_SAMPLE_TEX2D_SAMPLER**(*name*, *samplername*, *uv*) | **SAMPLE_TEXTURE2D**(*textureName*, *samplerName*, *coord2*)
 **UNITY_SAMPLE_TEX2DARRAY**(*name*, *uv*) | **SAMPLE_TEXTURE2D_ARRAY**(*textureName*, *samplerName*, *coord2*, *index*)
