@@ -56,10 +56,7 @@ Okay! So let's go! All things here are mostly based on version 7.3 (version I'm 
 
 First of all, add `"RenderPipeline" = "UniversalPipeline"` to your tags. Next, all URP shaders are written using `HLSL` embraced by `HLSLPROGRAM/ENDHLSL/etc.` macros. To avoid headaches, use them as well.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   
 --------------------- | --------------------- 
 CGPROGRAM<br>HLSLPROGRAM  | HLSLPROGRAM
@@ -68,10 +65,7 @@ CGINCLUDE<br>HLSLINCLUDE | HLSLINCLUDE
 
 ## Shader Include Files <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Content |Built-in              | URP                   
 ---------------------|--------------------- | --------------------- 
 Core | Unity.cginc | [Packages/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Core.hlsl){:target="_blank"}
@@ -90,10 +84,7 @@ Other useful includes:
 
 ## Light Modes <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
  Built-in              | URP                   
 ---------------------|--------------------- 
 ForwardBase | UniversalForward
@@ -124,10 +115,7 @@ URP support some variants, so depending on the things you are using, you might n
 
 ### Helpers <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   
 --------------------- | --------------------- 
 **UNITY_PROJ_COORD**(*a*) | Gone. Do **a.xy/a.w** instead
@@ -137,10 +125,7 @@ Built-in              | URP
 
 You must include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl){:target="_blank"}.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   
 --------------------- | --------------------- 
 **UNITY_DECLARE_SHADOWMAP**(*tex*) | **TEXTURE2D_SHADOW_PARAM**(*textureName*, *samplerName*)
@@ -151,10 +136,7 @@ Built-in              | URP
 
 Unity has a bunch of texture/sampler macros to improve cross compatibility between APIs, but people are not used to use them. Those still exist in URP, but now with different names and new additions. I will not put all of them here because it's a lot, but you can check their definitions per platform in the [API includes](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.core/ShaderLibrary/API){:target="_blank"}.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   
 --------------------- | --------------------- 
 **UNITY_DECLARE_TEX2D**(*name*) | **TEXTURE2D**(*textureName*); **SAMPLER**(*samplerName*);  
@@ -173,10 +155,7 @@ You can find them all in ["Packages/com.unity.render-pipelines.core/ShaderLibrar
 
 ### Vertex Transformation Functions <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   
 --------------------- | --------------------- 
 *float4* **UnityObjectToClipPos**(*float3 pos*) | *float4* **TransformObjectToHClip**(*float3 positionOS*)
@@ -184,10 +163,7 @@ Built-in              | URP
 
 ### Generic Helper Functions <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 *float3* **WorldSpaceViewDir** (*float4 v*) | *float3* **GetWorldSpaceViewDir**(*float3 positionWS*) | Include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl){:target="_blank"}
@@ -204,10 +180,7 @@ Built-in              | URP                   |
  
 ### Forward Rendering Helper Functions <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 *float3* **WorldSpaceLightDir** (*float4 v*) | *_MainLightPosition.xyz* - **TransformObjectToWorld**(*objectSpacePosition*) | Include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl){:target="_blank"}
@@ -216,10 +189,7 @@ Built-in              | URP                   |
  
 ### Screen-space Helper Functions <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 *float4* **ComputeScreenPos** (*float4 clipPos*) | *float4* **ComputeScreenPos**(*float4 positionCS*) | Include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl){:target="_blank"}
@@ -227,10 +197,7 @@ Built-in              | URP                   |
 
 ### Vertex-lit Helper Functions <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 *float3* **ShadeVertexLights** (*float4 vertex*, *float3 normal*) | Gone. You can try to use `UNITY_LIGHTMODEL_AMBIENT.xyz + VertexLighting(...)` | For `VertexLighting(...)` include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl){:target="_blank"}
@@ -243,10 +210,7 @@ Most of the shader variables remains the same, except by lighting.
 
 ### Lighting <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 *_LightColor0* | *_MainLightColor* | Include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Input.hlsl){:target="_blank"}
@@ -265,10 +229,7 @@ If you want to loop over all additional lights using `GetAdditionalLight(...)`, 
 
 For more info about shadows, check ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Shadows.hlsl){:target="_blank"}.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 **UNITY_SHADOW_COORDS**(*x*) | Gone? DIY, e.g. `float4 shadowCoord : TEXCOORD0;` |
@@ -279,10 +240,7 @@ Built-in              | URP                   |
 
 For more info about fog, check ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/ShaderVariablesFunctions.hlsl){:target="_blank"}.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 **UNITY_FOG_COORDS**(*x*) | Gone? DIY, e.g. `float fogCoord : TEXCOORD0;` |
@@ -293,10 +251,7 @@ Built-in              | URP                   |
 
 To use the camera depth texture, include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/DeclareDepthTexture.hlsl){:target="_blank"} and the `_CameraDepthTexture` will be declared for you as well as helper the functions `SampleSceneDepth(...)` and `LoadSceneDepth(...)`.
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 **LinearEyeDepth**(*sceneZ*) | **LinearEyeDepth**(*sceneZ*, *_ZBufferParams*) | Include ["Packages/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.core/ShaderLibrary/Common.hlsl){:target="_blank"}
@@ -304,10 +259,7 @@ Built-in              | URP                   |
 
 ### Etc. <a href="#summary">↑</a>
 
-<<<<<<< HEAD
 {:.table}
-=======
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 Built-in              | URP                   |
 --------------------- | --------------------- | --------------------- 
 **ShadeSH9**(*normal*) | **SampleSH**(*normal*) | Include ["Packages/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl"](https://github.com/Unity-Technologies/Graphics/tree/master/com.unity.render-pipelines.universal/ShaderLibrary/Lighting.hlsl){:target="_blank"}
@@ -322,12 +274,8 @@ URP does not support `OnPreCull`, `OnPreRender`, `OnPostRender` and `OnRenderIma
 - `endFrameRendering(ScriptableRenderContext context,Camera[] cameras)`
 
 Example of usage:
-<<<<<<< HEAD
 
 ```C#
-=======
-```c#
->>>>>>> 21100b2f0b015c4e5be644b68bdbab3fe7e7d2c3
 void OnEnable()
 {
 	RenderPipelineManager.beginCameraRendering += MyCameraRendering;
