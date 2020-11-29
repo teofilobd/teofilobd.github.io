@@ -172,7 +172,7 @@ portfolio-items:
     portfolio-type:
      - type: "games"
 
-  - image : "assets/images/portfolio/annileen.png"
+  - image : "assets/images/portfolio/annileen-engine.png"
     url: "https://github.com/CrociDB/annileen"
     home : true
     portfolio-type:
@@ -190,7 +190,7 @@ portfolio-items:
     portfolio-type:
       - type: "media"
 
-  - image : "assets/images/portfolio/webinar-contaae.png"
+  - image : "assets/images/portfolio/webinar-contae.png"
     url: "https://www.youtube.com/watch?v=E1hBaqvtOeg"
     home: false
     portfolio-type:
@@ -220,7 +220,7 @@ portfolio-items:
     portfolio-type:
      - type: "games"
 
-  - image : "assets/images/portfolio/conflict0-shattered.png"
+  - image : "assets/images/portfolio/conflict0-shattered-vr.png"
     url: "https://blackriverstudios.net/conflictzeroshattered/"
     home: false
     portfolio-type:
@@ -238,13 +238,13 @@ portfolio-items:
     portfolio-type:
      - type: "games"
 
-  - image : "assets/images/portfolio/balloma.png"
+  - image : "assets/images/portfolio/balloma-tizen.png"
     url: "https://www.youtube.com/watch?v=-yYxefcx4Eo"
     home: false
     portfolio-type:
      - type: "games"
 
-  - image : "assets/images/portfolio/rococo.png"
+  - image : "assets/images/portfolio/rococo-vr.png"
     url: "https://blackriverstudios.net/rococovr/"
     home: false
     portfolio-type:
@@ -317,7 +317,7 @@ publications-items:
     publication-type:
      - type: "posts"
 
-  - image : "assets/images/publications/geg3.png"
+  - image : "assets/images/publications/game-engine-gems3.png"
     url: "https://www.gameenginegems.net/geg3.php"
     title : "Vision Based Local Collision Avoidance"
     authors : "Teófilo Dutra, Ricardo Marques, Julien Pettré, Jan Ondřej"
@@ -327,7 +327,7 @@ publications-items:
     publication-type:
      - type: "books"
      
-  - image : "assets/images/publications/panoramic_vision.png"
+  - image : "assets/images/publications/panoramic_sv.png"
     url: "https://www.seer.ufrgs.br/jis/article/view/59668"
     pdf: "https://www.seer.ufrgs.br/jis/article/view/59668/35553"
     title : "A panoramic synthetic vision model for improving collision avoidance in crowd simulation"
@@ -338,7 +338,7 @@ publications-items:
     publication-type:
      - type: "journals"
 
-  - image : "assets/images/publications/following.png"
+  - image : "assets/images/publications/following-behavior.png"
     url: "https://dl.acm.org/doi/abs/10.1145/2668064.2668085"
     pdf: "http://julien.loic.bruneau.free.fr/paper/MIG2014.pdf"
     title : "Following behaviors: a model for computing following distances based on prediction"
@@ -350,7 +350,7 @@ publications-items:
     publication-type:
      - type: "conferences"
 
-  - image : "assets/images/publications/synthetic_comparison.png"
+  - image : "assets/images/publications/synthetic_compare.png"
     pdf: "https://www.researchgate.net/profile/Teofilo_Dutra/publication/261703520_Synthetic_Vision-based_Crowd_Simulation_Reactive_vs_Reactive_Planning_Approaches/links/53d6651d0cf2a7fbb2eaa1e2/Synthetic-Vision-based-Crowd-Simulation-Reactive-vs-Reactive-Planning-Approaches.pdf"
     title : "Synthetic vision-based crowd simulation: reactive vs. reactive planning approaches"
     authors : "TB Dutra, G Priem, JB Cavalcante-Neto, CA Vidal, J Pettré"
