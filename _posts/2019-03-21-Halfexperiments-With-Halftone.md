@@ -3,6 +3,7 @@ published: true
 layout: post
 title: Halfexperiments with Halftone
 date: '2019-03-21'
+image: /assets/images/blog/halftone/HalftonePP_3.gif
 categories:
   - unity
   - shaders
@@ -31,23 +32,20 @@ float4 htColor = float4(ht,ht,ht, 1);
 
 The difference when working with that as post processing is that your uv will be the screen coodinates normalized. In my experiments, I tried some kind of chromatic aberration where each color channel is displaced according to its intensity. I also added a noise to disturb the direction of the displacement over time. I won't share the code because it's ~~a mess~~ too experimental.
 
-<br/>
 
 Playing with parameters
-![Halftone01]({{site.baseurl}}/images/halftone/HalftonePP.gif)
 
-<br/>
+![Halftone01]({{site.baseurl}}/assets/images/blog/halftone/HalftonePP.gif)
 
-![Halftone02]({{site.baseurl}}/images/halftone/HalftonePP_2.gif)
-
-<br/>
+![Halftone02]({{site.baseurl}}/assets/images/blog/halftone/HalftonePP_2.gif)
 
 Playing with parameters
-![Halftone03]({{site.baseurl}}/images/halftone/HalftonePP_3.gif)
 
-<br/>
+![Halftone03]({{site.baseurl}}/assets/images/blog/halftone/HalftonePP_3.gif)
+
 Dramatic tone
-![Halftone04]({{site.baseurl}}/images/halftone/HalftonePP_4.gif)
+
+![Halftone04]({{site.baseurl}}/assets/images/blog/halftone/HalftonePP_4.gif)
 
 
 

@@ -4,7 +4,7 @@ layout: post
 date: '2018-01-19'
 categories:
   - crowd simulation
-title: (A brief) Introduction to Crowd Simulation
+title: (A Brief) Introduction To Crowd Simulation
 ---
 This post is the first of a series about crowd simulation. "_Why crowd simulation specifically ?_" one might ask. And I say it's because I studied crowd simulation for several years and, although I do not work on this subject anymore, I do like to talk about it. 
 
@@ -68,7 +68,7 @@ Perhaps the most important, and consequently the most investigated, part of a cr
 The global navigator is responsible for managing the global goals of the agents. For example, an agent starts at A and has to go to B, once it gets to B the global navigator update its objective and now the agent knows that it has to go to C, and so on. You probably already heard about the algorithm A*, it is a extended Djikstra broadly used for global navigation or at least used as inspiration for some other algorithms. If instead of moving point-to-point we are interested in moving from a set of points within an area to another set of points, we can resort then to a navigation mesh, that represents the navigable space within an environment and this way provides more options of movement.
 
 <br>
-![nav_systems.jpg]({{site.baseurl}}/images/nav_systems.jpg)
+![nav_systems.jpg]({{site.baseurl}}/assets/images/blog/images/nav_systems.jpg)
 Difference of paths when moving between waypoints and using a navigation mesh (found this image [here](https://docs.unrealengine.com/udk/Three/AIAndNavigationHome.html)).
 <br><br>
   

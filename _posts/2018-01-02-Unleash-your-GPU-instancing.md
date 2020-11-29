@@ -1,4 +1,9 @@
 ---
+layout: post
+title: 'Unleash Your GPU Instancing'
+date: '2018-01-02'
+categories: unity shaders graphics
+image: /assets/images/blog/PropertyExample.JPG
 published: true
 ---
 When you are developing a game, no matter what is your target device, you'll want to save draw calls in order to be able to keep pushing more stuff into your game using all the budget you have. 
@@ -176,7 +181,7 @@ Shader "Unlit/BasicInstancing"
 
 The cube prefab material uses the shader above and has the option 'Enable GPU Instancing' ticked. The scene is composed only by objects using this same material. As result, you can see that we have only one draw call for the whole scene below.
 
-![Basic Example]({{site.baseurl}}/images/BasicExample.JPG)
+![Basic Example]({{site.baseurl}}/assets/images/blog/BasicExample.JPG)
 
 
 ## Playing with properties
@@ -316,14 +321,14 @@ Shader "Unlit/PropertyInstancing"
 
 ```
 
-![Property Example]({{site.baseurl}}/images/PropertyExample.JPG)
+![Property Example]({{site.baseurl}}/assets/images/blog/PropertyExample.JPG)
 
 
 ## Playing with texture
 
 As seen in the previous example, we can change properties of instances while keeping the instancing working. However, we cannot have different textures per instance, what would demand a lot of memory by the way. But, there is a workaround for this: we can set an UV offset per instance as well as different scale and translation for the local UV space. In other words, we can have an texture atlas and sample it differently per instance.
 
-![Atlas.jpeg]({{site.baseurl}}/images/Atlas.jpeg)  
+![Atlas.jpeg]({{site.baseurl}}/assets/images/blog/Atlas.jpeg)  
 _Images from [www.textures.com](www.textures.com)_
 
 In this example, I'm going to use the atlas above with 4 textures. Each instance will handle a different cell pair related to a texture in the atlas _((0,0),(0,1),(1,0),(1,1))_ and also its own tiling and offset. Our new shader will be the following:
@@ -477,7 +482,7 @@ Shader "Unlit/TextureInstancing"
 
 In the end, we get something like the following image. Note that the container parts can have a different setup by just adjusting their handlers individually. It's not like "wow, what a beautiful use of GPU instancing!", but it shows you (more or less) what you can do with it.
 
-![Texture Example]({{site.baseurl}}/images/TextureExample.JPG)
+![Texture Example]({{site.baseurl}}/assets/images/blog/TextureExample.JPG)
 
 # Conclusion
 

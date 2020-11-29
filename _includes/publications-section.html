@@ -1,0 +1,44 @@
+{% if site.data.settings.publications-items %}
+<!-- publications -->
+<section class="section">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">Latest Publications</h2>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+      {% for item in site.data.settings.publications-items offset:0 limit:3 %}
+      <div class="col-lg-12 mb-4 shuffle-item">
+        <div class="position-relative rounded hover-wrapper">
+          <div class="row mb-4">
+            <div class="col-3">
+              <img src="{{ site.baseurl }}/{{ item.image }}" alt="publication-image" class="img-fluid rounded w-100 d-block">
+            </div>
+            <div class="col-9">
+              <h4  class="text-light"><strong><div>{{item.year}}</div><div>{{item.venue}}</div></strong></h4> 
+
+              <h3>{{ item.title }}</h3>
+              <h4>{{ item.authors }}</h4> 
+              <a class="btn btn-primary btn-sm" href="{{ item.url }}">Publisher</a>  
+              {% if item.pdf %}
+              <a class="btn btn-primary btn-sm" href="{{ item.pdf }}">PDF</a>           
+              {% endif %}
+              {% if item.citation %}
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="popover" data-content="{{ item.citation }}">Citation</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}      
+    </div>
+    <div class="row">
+      <div class="col text-center">
+        <a href="{{ site.base-url }}/Publications" class="btn btn-primary text-center">Go To Publications</a>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- /portfolio -->
+{% endif %}

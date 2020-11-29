@@ -1,0 +1,74 @@
+---
+layout: page
+title: Publications
+---
+<!-- publications -->
+<section class="section">
+  <div class="container">
+    <div class="row mb-5">
+      <div class="col-12">
+        <div class="btn-group btn-group-toggle justify-content-center d-flex" data-toggle="buttons">
+          <label class="btn btn-sm btn-primary active">
+            <input type="radio" name="shuffle-filter" value="all" checked="checked" />All
+          </label>
+          {% for label in site.data.settings.publications-label %}
+          <label class="btn btn-sm btn-primary">
+            <input type="radio" name="shuffle-filter" value="{{ label.type }}" />{{ label.title }}
+          </label>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+    <div class="row shuffle-wrapper">
+      {% for item in site.data.settings.publications-items %}
+      <div class="col-lg-12 mb-4 shuffle-item" data-groups="[{% for publication in item.publication-type %}{% if forloop.first == true %}{% else %},{% endif %}&quot;{{ publication.type }}&quot;{% endfor %}]">
+        <div class="position-relative rounded hover-wrapper">
+          <div class="row mb-4">
+            <div class="col-3">
+              <img src="{{ site.baseurl }}/{{ item.image }}" alt="publication-image" class="img-fluid rounded w-100 d-block">
+            </div>
+            <div class="col-9">
+              <h4  class="text-light"><strong><div>{{item.year}}</div><div>{{item.venue}}</div></strong></h4> 
+
+              <h3>{{ item.title }}</h3>
+              <h4>{{ item.authors }}</h4> 
+              <a class="btn btn-primary btn-sm" href="{{ item.url }}">Publisher</a>  
+              {% if item.pdf %}
+              <a class="btn btn-primary btn-sm" href="{{ item.pdf }}">PDF</a>           
+              {% endif %}
+              {% if item.citation %}
+              <button type="button" class="btn btn-primary btn-sm" data-toggle="popover" data-content="{{ item.citation }}">Citation</button>
+              {% endif %}
+            </div>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+      
+    </div>
+    <div class="row">
+      <p class="col text-center" style="font-size: 20px;">For a full list of publications access my <a href="https://scholar.google.com/citations?user=h-OWzGcAAAAJ">Google Scholar</a></p>      
+    </div>
+  </div>
+</section>
+<!-- /publications -->
+
+<script>
+$(document).ready(function(){
+  $('[data-toggle="popover"]').popover();   
+});
+</script>
+<!-- clients -->
+{% if site.data.settings.client-slider-items %}
+<section class="section bg-light">
+  <div class="container">
+    <div class="row">
+      <div class="col-12 text-center">
+        <h2 class="section-title">My Clients</h2>
+      </div>
+    </div>
+    {% include client-slider.html %}
+  </div>
+</section>
+{% endif %}
+<!-- /clients -->

@@ -1,8 +1,9 @@
 ---
 published: true
 layout: post
-title: 'Look up the A-Stars, look how they shine for you'
+title: 'Look Up The A-Stars, Look How They Shine For You'
 date: '2018-02-28'
+image: /assets/images/blog/AStar_agents.gif
 categories:
   - unity
   - A-star
@@ -19,7 +20,7 @@ Continuing the series about crowd simulation that I started in [this post](https
 
 Let's start then. First, we need waypoints in our environment. You can place waypoints yourself or place them randomly or use some algorithm to place them in some smarter way. So, for the following scene, the spheres are representing the location of waypoints that I placed arbitrarily. 
 
-![Waypoints]({{site.baseurl}}/images/Waypoints.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Waypoints.JPG)
 
 ### Preprocess stuff
 
@@ -46,8 +47,8 @@ The algorithm is something like:
 
 It might be a bit confuse, I didn't give my best to write that. The following gifs show the difference between A\* (left) and Dijkstra (right), where the blue sphere is the ending waypoint, black is a visited waypoint, the range from yellow to red shows the cost (yellow -> low, red -> high) and green is the final path.  
 
-<img src="{{site.baseurl}}/images/AStar.gif" height="335">
-<img src="{{site.baseurl}}/images/Dijkstra.gif" height="335">
+<img src="{{site.baseurl}}/assets/images/blog/AStar.gif" height="335">
+<img src="{{site.baseurl}}/assets/images/blog/Dijkstra.gif" height="335">
 
 ### Code
 
@@ -191,4 +192,4 @@ I created this [new separate repository](https://github.com/teofilobd/Crowd-simu
 
 The next post in this series will probably be about navigation meshes. Stay tuned.
 
-![astar_agents]({{site.baseurl}}/images/AStar_agents.gif)
+![astar_agents]({{site.baseurl}}/assets/images/blog/AStar_agents.gif)

@@ -1,4 +1,8 @@
 ---
+layout: post
+title: 'Previously Posted'
+date: '2017-12-27'
+categories: unity graphics
 published: true
 ---
 A few months ago I posted two articles on gamasutra about some techniques and tricks used in [Angest](https://www.oculus.com/experiences/gear-vr/1199148026798440/) for GearVR. Using those helped us to achieve the good graphics and performance seen in the final release of the game. You can check them here:  

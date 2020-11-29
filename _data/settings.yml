@@ -1,0 +1,433 @@
+#-------------------------------
+# General Site Settings
+
+title: Teo Dutra
+logo: 
+author: themefisher
+description: Teo Dutra's portfolio
+#email: steve.fruits@email.com
+#phone: +880 2544 658 256
+#address: 125/A, CA Commercial Area, California, USA
+copyright: Copyright &copy; 2020 Designed by [Themefisher](https://themefisher.com) & Developed by [Getjekyllthemes](https://getjekyllthemes.com)
+
+menu:
+- {name: About, link: '/about'}
+- {name: Portfolio, link: '/portfolio'}
+- {name: Publications, link: '/publications'}
+- {name: Blog, link: '/blog'}
+#- {name: Contact, link: '/contact'}
+
+
+#-------------------------------
+# Google Analytics Section
+
+# Analytics helps you understand who visits your website.
+# Learn more at: http://support.google.com/analytics/answer/1008065
+
+# NOTE: If you want to use Google Analytics for basic web tracking: Just uncomment and enter your UA-Code here.
+
+google-analytics: # UA-XXXXXX-X
+
+
+#-------------------------------
+# Comment Section (Disqus)
+
+disqus-identifier: # Add your shortname for Disqus Comment. For example mr-brown
+
+
+#-------------------------------
+# Hero Section
+
+hero:
+  hero-title: Hi! <br> I’m Teo <br> Programmer <br> and <br> Researcher
+
+social:
+#- {icon: "ti-facebook", link: "#"}
+#- {icon: "ti-instagram", link: "#"}
+#- {icon: "ti-dribbble", link: "#"}
+- {icon: "ti-twitter-alt", link: "https://twitter.com/teodutra"}
+- {icon: "ti-linkedin", link: "https://www.linkedin.com/in/teofilodutra/"}
+
+
+#-------------------------------
+# About (Section and Page)
+
+# About Section
+blurb:
+  Hi! My name is Teófilo (a.k.a. Teo). I am a programmer with +5 years of experience in R&D. In this website, you will find more information about me, the <a href="portfolio">projects I have worked in so far</a>   and some of my  <a href="publications">publications</a>. Once in a while I also post things in <a href="blog">my blog</a> as well. Feel free to reach out on my social networks.
+
+blurb-btn-link: '/about'
+blurb-btn-name: know more
+
+
+# About Page
+
+# Work Process Section
+# work-process:
+#   - title : "Research and Plan"
+#     icon : "assets/images/icons/plan.png"
+#     content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    
+#   - title : "Design and Develop"
+#     icon : "assets/images/icons/design.png"
+#     content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+    
+#   - title : "Deliver"
+#     icon : "assets/images/icons/print.png"
+#     content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."
+
+
+# # My Team Section
+# team:
+#   - title : "Jack Schenziwe"
+#     image : "assets/images/team/member-1.png"
+#     designation : "Project Manager"
+    
+#   - title : "Julias Carlie"
+#     image : "assets/images/team/member-2.png"
+#     designation : "Web Developer"
+    
+#   - title : "John Doe"
+#     image : "assets/images/team/member-3.png"
+#     designation : "Designer"
+
+
+#-------------------------------
+# Skills Section
+
+# skills-title: Skills
+# skills:
+# - {name: Web Design, color: '#fdb157', value: '90%'}
+# - {name: Logo Design, color: '#9473e6', value: '60%'}
+# - {name: After Effects, color: '#bdecf6', value: '80%'}
+# - {name: Web App, color: '#ffbcaa', value: '70%'}
+
+
+#-------------------------------
+# Exprerience Section
+
+experience-title: Experience
+experience:
+- {name: Senior Software Engineer, icon: 'icon-3.png', date: 'Jan 2020 - Present', organization: 'Cloudhead Games'}
+- {name: Senior Software Engineer, icon: 'icon-2.png', date: 'Oct 2017 - Dec 2019', organization: 'Archiact Interactive'}
+- {name: Core Tech Engineer, icon: 'icon-1.png', date: 'Nov 2015 - Oct 2017', organization: 'Black River Studios'}
+
+
+#-------------------------------
+# Education Section
+
+education-title: Education
+education:
+- {name: Ph.D. in Computer Science, date: '2015', organization: 'Universidade Federal do Ceará'}
+- {name: Masters in Computer Science, date: '2011', organization: 'Universidade Federal do Ceará'}
+- {name: Bachelor of Computer Science, date: '2008', organization: 'Universidade Estadual do Ceará'}
+
+
+#-------------------------------
+# Services Section
+
+# services-title: Services
+# services:
+# - {
+#     name: UI Design,
+#     icon: ti-palette,
+#     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+#     active: # Add true to select section
+#   }
+# - {
+#     name: UX Design,
+#     icon: ti-vector,
+#     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+#     active: true # Add true to select section
+#   }
+# - {
+#     name: Interaction Design,
+#     icon: ti-panel,
+#     description: 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.',
+#     active: # Add true to select section
+#   }
+
+
+
+#-------------------------------
+# Portfolio Page
+portfolio-label:
+- {
+    title : "Projects",
+    type : "projects"
+  }
+- {
+    title : "Games",
+    type : "games"
+  }
+- {
+    title : "Media",
+    type : "media"
+  }
+
+portfolio-items:
+  - image : "assets/images/portfolio/pistolwhip.png"
+    url: "https://cloudheadgames.com/pistol-whip/"
+    home : true
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/annileen.png"
+    url: "https://github.com/CrociDB/annileen"
+    home : true
+    portfolio-type:
+      - type: "projects"
+
+  - image : "assets/images/portfolio/raytracer.gif"
+    url: "https://github.com/teofilobd/URP-RayTracer"
+    home: true
+    portfolio-type:
+      - type: "projects"
+
+  - image : "assets/images/portfolio/synthetic-vision.gif"
+    url: "https://www.youtube.com/watch?v=aqOfqdm9Hcc"
+    home: true
+    portfolio-type:
+      - type: "media"
+
+  - image : "assets/images/portfolio/webinar-contaae.png"
+    url: "https://www.youtube.com/watch?v=E1hBaqvtOeg"
+    home: false
+    portfolio-type:
+      - type: "media"
+
+  - image : "assets/images/portfolio/marvel-doh.png"
+    url: "https://www.archiactvr.com/games/marvel-dimension-of-heroes"
+    home: true
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/freediver.png"
+    url: "https://www.archiactvr.com/games/freediver-triton-down-extended-cut"
+    home: true
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/hidden-fortune.png"
+    url: "https://www.archiactvr.com/games/hidden-fortune-unexplored"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/conflict0-revolution.png"
+    url: "https://blackriverstudios.net/conflictzerorevolution/"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/conflict0-shattered.png"
+    url: "https://blackriverstudios.net/conflictzeroshattered/"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/angest.png"
+    url: "https://blackriverstudios.net/angest/"
+    home: true
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/rock-and-rails.png"
+    url: "https://blackriverstudios.net/rock&rails/"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/balloma.png"
+    url: "https://www.youtube.com/watch?v=-yYxefcx4Eo"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/rococo.png"
+    url: "https://blackriverstudios.net/rococovr/"
+    home: false
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/multipotential-fields.gif"
+    url: "https://www.youtube.com/watch?v=COlxvs6pywA"
+    home: false
+    portfolio-type:
+      - type: "media"
+      
+# Publications Page
+publications-label:
+- {
+    title : "Conferences",
+    type : "conferences"
+  }
+- {
+    title : "Journals",
+    type : "journals"
+  }
+- {
+    title : "Book Chapters",
+    type : "books"
+  }
+- {
+    title : "Posts",
+    type : "posts"
+  }
+
+publications-items:
+  - image : "assets/images/portfolio/synthetic-vision.gif"
+    url: "https://onlinelibrary.wiley.com/doi/abs/10.1111/cgf.13130"
+    pdf: "https://hal.inria.fr/hal-01653590/file/EG2017.pdf"
+    title : "Gradient‐based steering for vision‐based crowd simulation algorithms"
+    authors : "T. B. Dutra, R. Marques, J. B. Cavalcante‐Neto, C. A. Vidal, J. Pettré"
+    venue: "Computer Graphics Forum / Eurographics"
+    year: 2017
+    youtube: "https://www.youtube.com/watch?v=aqOfqdm9Hcc"
+    citation: "Dutra, T.B., Marques, R., Cavalcante‐Neto, J., Vidal, C.A. and Pettré, J. (2017), Gradient‐based steering for vision‐based crowd simulation algorithms. Computer Graphics Forum, 36: 337-348. https://doi.org/10.1111/cgf.13130"
+    publication-type:
+     - type: "conferences"
+     - type: "journals"
+
+  - image : "assets/images/publications/gpu-zen-logo-black.png"
+    url: "http://gpuzen.blogspot.com/"
+    title : "Mobile Toon Shading"
+    authors : "Felipe Lira, Felipe Chaves, Flávio Villalva, Jesus Sosa, Kléverson Paixão, Teófilo Dutra"
+    venue : "Gpu Zen"
+    year: 2017
+    citation: "Felipe Lira, Felipe Chaves, Flávio Villalva, Jesus Sosa, Kléverson Paixão, and Teófilo Dutra. 2017. Mobile toon shading. In GPU Zen 01: Advanced Rendering Techniques. Black Cat Publishing, 115–121."
+    publication-type:
+     - type: "books"
+
+  - image : "assets/images/publications/gamasutra-p2.gif"
+    url: "https://www.gamasutra.com/blogs/TeofiloDutra/20171106/309023/How_we_achieved_high_quality_graphics_and_kept_performance_on_Angest_for_GearVR_Part_2.php"
+    title : "How we achieved high quality graphics and kept performance on Angest for GearVR (Part&nbsp;2)"
+    authors : "Teófilo Dutra"
+    venue : "Gamasutra"
+    year: 2017
+    publication-type:
+     - type: "posts"
+
+  - image : "assets/images/publications/gamasutra-p1.gif"
+    url: "https://www.gamasutra.com/blogs/TeofiloDutra/20171024/308146/How_we_achieved_high_quality_graphics_and_kept_performance_on_Angest_for_GearVR_Part_1.php"
+    title : "How we achieved high quality graphics and kept performance on Angest for GearVR (Part&nbsp;1)"
+    authors : "Teófilo Dutra"
+    venue : "Gamasutra"
+    year: 2017
+    publication-type:
+     - type: "posts"
+
+  - image : "assets/images/publications/geg3.png"
+    url: "https://www.gameenginegems.net/geg3.php"
+    title : "Vision Based Local Collision Avoidance"
+    authors : "Teófilo Dutra, Ricardo Marques, Julien Pettré, Jan Ondřej"
+    venue : "Game Engine Gems 3"
+    year: 2016
+    citation: "Dutra, T. B., R. Marques, J. Pettré, and J. Ondřej. “Vision Based Local Collision Avoidance”. In: Game Engine Gems. Ed. by Eric Lengyel. 1st ed. Vol. 3. A K Peters/CRC Press. Chap. 18."
+    publication-type:
+     - type: "books"
+     
+  - image : "assets/images/publications/panoramic_vision.png"
+    url: "https://www.seer.ufrgs.br/jis/article/view/59668"
+    pdf: "https://www.seer.ufrgs.br/jis/article/view/59668/35553"
+    title : "A panoramic synthetic vision model for improving collision avoidance in crowd simulation"
+    authors : "Ricardo Bustamante de Queiroz, Teófilo Dutra, Creto Vidal, Joaquim Cavalcante-Neto"
+    venue : "Journal on Interactive Systems"
+    year: 2015
+    citation: "de Queiroz R. B.,  Dutra T., Vidal C. (2015). A panoramic synthetic vision model for improving collision avoidance in crowd simulation. SBC Journal on Interactive Systems, 6(2), 3–10."
+    publication-type:
+     - type: "journals"
+
+  - image : "assets/images/publications/following.png"
+    url: "https://dl.acm.org/doi/abs/10.1145/2668064.2668085"
+    pdf: "http://julien.loic.bruneau.free.fr/paper/MIG2014.pdf"
+    title : "Following behaviors: a model for computing following distances based on prediction"
+    authors : "Julien Bruneau, Teófilo B. Dutra, and Julien Pettré"
+    year : 2014
+    youtube: "https://www.youtube.com/watch?v=JbQe19DyUMc"
+    venue : "Motion in Games"
+    citation: "Julien Bruneau, Teófilo B. Dutra, and Julien Pettré. 2014. Following behaviors: a model for computing following distances based on prediction. In Proceedings of the Seventh International Conference on Motion in Games (MIG '14). Association for Computing Machinery, New York, NY, USA, 17–24. DOI:https://doi.org/10.1145/2668064.2668085"
+    publication-type:
+     - type: "conferences"
+
+  - image : "assets/images/publications/synthetic_comparison.png"
+    pdf: "https://www.researchgate.net/profile/Teofilo_Dutra/publication/261703520_Synthetic_Vision-based_Crowd_Simulation_Reactive_vs_Reactive_Planning_Approaches/links/53d6651d0cf2a7fbb2eaa1e2/Synthetic-Vision-based-Crowd-Simulation-Reactive-vs-Reactive-Planning-Approaches.pdf"
+    title : "Synthetic vision-based crowd simulation: reactive vs. reactive planning approaches"
+    authors : "TB Dutra, G Priem, JB Cavalcante-Neto, CA Vidal, J Pettré"
+    year : 2014
+    venue : "Conference on Computer Animation and Social Agents"
+    citation: "DUTRA, T. B., PRIEM, G., CAVALCANTE-NETO, J. B., VIDAL,C. A.,AND PETTRÉ, J. 2014. Synthetic Vision-based Crowd Simulation: Reactive vs. Reactive Planning Approaches. In Proceedings of the 27th Conference on Computer Animation and Social Agents (CASA 2014)"
+    publication-type:
+     - type: "conferences"
+
+  - image : "assets/images/portfolio/multipotential-fields.gif"
+    url: "https://ieeexplore.ieee.org/abstract/document/6656165/"
+    pdf: "http://sibgrapi.sid.inpe.br/attachment.cgi/sid.inpe.br/sibgrapi/2013/07.05.13.57/doc/PID2846543.pdf"
+    title : "A multipotential field model for crowds with scalable behaviors"
+    authors : "Teófilo B. Dutra; Joaquim B. Cavalcante-Neto; Creto A. Vidal; Soraia R. Musse"
+    year : 2013
+    youtube : "https://www.youtube.com/watch?v=COlxvs6pywA"
+    venue : "Conference on Graphics, Patterns and Images (SIBGRAPI)"
+    citation: "T. B. Dutra, J. B. Cavalcante-Neto, C. A. Vidal and S. R. Musse. A Multipotential Field Model for Crowds with Scalable Behaviors. 2013 XXVI Conference on Graphics, Patterns and Images, Arequipa, 2013, pp. 31-38, doi: 10.1109/SIBGRAPI.2013.14."
+    publication-type:
+     - type: "conferences"
+
+#-------------------------------
+# Testimonials Section
+
+# testimonial-items:
+#   - name: "Jesica Gomez"
+#     image: "assets/images/testimonial/client-1.png"
+#     designation : "CEO, Funder"
+#     content : "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    
+#   - name: "Jesica Gomez"
+#     image: "assets/images/testimonial/client-1.png"
+#     designation: "CEO, Funder"
+#     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+    
+#   - name: "Jesica Gomez"
+#     image: "assets/images/testimonial/client-1.png"
+#     designation: "CEO, Funder"
+#     content: "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, <strong>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</strong> Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur."
+
+
+#-------------------------------
+# Client Slider Section
+
+# client-slider-items:
+#   - logo: "assets/images/clients-logo/client-logo-1.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-2.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-3.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-4.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-5.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-1.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-2.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-3.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-4.png"
+#     url: "#"
+    
+#   - logo: "assets/images/clients-logo/client-logo-5.png"
+#     url: "#"
+
+#-------------------------------
+# Contact Section
+
+# contact-title: Contact Info
+# contact-email: steve.fruits@email.com

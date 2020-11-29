@@ -1,9 +1,10 @@
 ---
 published: true
 layout: post
-title: Let's cook a Blinn-Phong
+title: Let's Cook a Blinn-Phong
 date: '2018-01-09'
-categories: shaders unity
+image: /assets/images/blog/Diffuse.JPG
+categories: shaders unity graphics
 ---
 Today I'm going to teach you how to cook a Blinn-Phong. There are days when you want to eat a fancy, tasteful [PBR](https://en.wikipedia.org/wiki/Physically_based_rendering) dish, but sometimes you are hungry and you just want to taste something as good and as simple as a Blinn-Phong. It can be cooked fast, the ingredients are easy to find and you can add the seasoning according to your preferences. 
 
@@ -32,7 +33,7 @@ If we were talking about code, it would be something like this:
 fixed3 ambient = _AmbientIntensity * _AmbientIntensity;
 ```
 
-![Ambient]({{site.baseurl}}/images/Ambient.JPG)
+![Ambient]({{site.baseurl}}/assets/images/blog/Ambient.JPG)
 
 Like I said, if your oven has convection, the _Ambient_ will spread evenly on your mesh as soon as you cook it.
 
@@ -48,7 +49,7 @@ fixed dotNL = max(dot(normalDir, lightDir), 0.0);
 fixed3 diffuse = _DiffuseIntensity * _DiffuseColor * dotNL;
 ```
 
-![Diffuse.JPG]({{site.baseurl}}/images/Diffuse.JPG)
+![Diffuse.JPG]({{site.baseurl}}/assets/images/blog/Diffuse.JPG)
 
 ## Specular
 
@@ -86,7 +87,7 @@ Whether you choose Phong or Blinn-Phong, take what you have, take the _Specular 
 fixed3 specular = _SpecularIntensity * _SpecularColor * specContrib;
 ```
 
-![Specular.JPG]({{site.baseurl}}/images/Specular.JPG)
+![Specular.JPG]({{site.baseurl}}/assets/images/blog/Specular.JPG)
 
 ## Finally
 
@@ -103,14 +104,14 @@ fixed3 col = tex2D(_MainTex, i.uv);
 finalColor *= col;
 ```
 
-![BlinnPhongTexture.JPG]({{site.baseurl}}/images/BlinnPhongTexture.JPG)
+![BlinnPhongTexture.JPG]({{site.baseurl}}/assets/images/blog/BlinnPhongTexture.JPG)
 
 That's almost it!
 
 At this point, if you cooked a sphere like I did, you might have a shading like one of these images (without the texture).
 
-<img src="{{site.baseurl}}/images/Linear.JPG" height="335">
-<img src="{{site.baseurl}}/images/Gamma.JPG" height="335">
+<img src="{{site.baseurl}}/assets/images/blog/Linear.JPG" height="335">
+<img src="{{site.baseurl}}/assets/images/blog/Gamma.JPG" height="335">
 
 If it is similar to the image on the left, you are done here, go to next section. Otherwise, if you got something like the image on the right, it's necessary to make a little adjustment on your way of cooking. 
 
@@ -253,7 +254,7 @@ Second, if you didn't understand the linear- and gamma-space talk, I recommend y
 
 The good news is that if your target device supports a modern API, it is likely to do this conversion automatically. You just have to set the color space to linear in the Unity player settings (see picture). Otherwise, you do need to convert textures to linear space (pow(texture,2.2)) and convert your final color back to gamma-space in your shader. Be aware that textures that store values with some meaning (e.g. lookup texture) don't need to be stored nor converted to gamma-space.  
 
-![ColorSpaceSettings.JPG]({{site.baseurl}}/images/ColorSpaceSettings.JPG)
+![ColorSpaceSettings.JPG]({{site.baseurl}}/assets/images/blog/ColorSpaceSettings.JPG)
 
 
 Cheers!

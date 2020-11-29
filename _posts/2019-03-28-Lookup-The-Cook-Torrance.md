@@ -3,6 +3,7 @@ published: true
 layout: post
 title: Look up! The Cook-Torrance!
 date: '2019-03-28'
+image: /assets/images/blog/cook_torrance/CT_CTLT.gif
 categories:
   - unity
   - shaders
@@ -14,7 +15,7 @@ Continuing the posts of stuff that I should have posted last year but for some r
 
 [Cook-Torrance](http://inst.eecs.berkeley.edu/~cs283/sp13/lectures/cookpaper.pdf) is a BRDF (Bidirectional Reflectance Distribution Function) broadly used in engines for specular reflection. In [Claudia Doppioslash's book](https://www.amazon.com/Physically-Based-Shader-Development-Unity-ebook/dp/B0785TJQVY), you can find an implementation similar to the following, with minor changes.
 
-```ShaderLab
+```glsl
 float sqr(float value)
 {
   return value * value;
@@ -99,12 +100,12 @@ for (int x = 0; x < width; ++x)
 <br/>
 The texture generated will look like this (the original can be found [here](https://github.com/teofilobd/APIs-stuff/blob/master/Unity/ShaderXP/Assets/Textures/CookTorranceLUT.exr))
 
-![CT_Lookup]({{site.baseurl}}/images/cook_torrance/CT_Lookup.JPG)
+![CT_Lookup]({{site.baseurl}}/assets/images/blog/cook_torrance/CT_Lookup.JPG)
 
 <br/>
 With this lookup texture, we can then replace the `CookTorranceSpec(...)` call in our shader by the following code.
 
-```ShaderLab
+```glsl
 float F = tex2D(_CookTorranceLUT, float2(LdotH, 0.04)).r;
 float G1L = tex2D(_CookTorranceLUT, float2(roughness, NdotL)).g;
 float G1V = tex2D(_CookTorranceLUT, float2(roughness, NdotV)).g;
@@ -118,11 +119,11 @@ float spec = NdotL * F * G1L * G1V * D;
 ## Results
 
 (Unity Standard x Cook-Torrance with Lookup Texture)
-![Standard_CTLT]({{site.baseurl}}/images/cook_torrance/Standard_CTLT.gif)
+![Standard_CTLT]({{site.baseurl}}/assets/images/blog/cook_torrance/Standard_CTLT.gif)
 <br/>
 
 (Cook-Torrance x Cook-Torrance with Lookup Texture)
-![CT_CTLT]({{site.baseurl}}/images/cook_torrance/CT_CTLT.gif)
+![CT_CTLT]({{site.baseurl}}/assets/images/blog/cook_torrance/CT_CTLT.gif)
 
 ## Discussion
 

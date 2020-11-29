@@ -1,8 +1,9 @@
 ---
 published: true
 layout: post
-title: Outline(-ish) shaders
+title: Outline(-ish) Shaders
 date: '2018-03-26'
+image: /assets/images/blog/Outline_InvertedHull.JPG
 categories:
   - unity
   - shaders
@@ -22,7 +23,7 @@ In the second pass, render the mesh normally.
 
 You can disable the Z writing to avoid rendering inner outlines, but be aware of the drawing order of your meshes. Also, with ZWrite off you won't see the outline in front of unity's skybox, since it's drawn later.
 
-![Waypoints]({{site.baseurl}}/images/Outline_InvertedHull.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Outline_InvertedHull.JPG)
 
 ## 2) Using stencil buffer
 
@@ -35,7 +36,7 @@ In the second pass:
   - Push vertices in the normal direction.
   - Render the hull using the outline color. 
 
-![Waypoints]({{site.baseurl}}/images/Outline_Stencil.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Outline_Stencil.JPG)
 
 ## 3) Using stencil buffer with separate control for inner/outer
 
@@ -52,7 +53,7 @@ Third pass (outer outline):
 - If stencil value is different from the one set in the first pass:
   - Render outline (inverted hull) using outer thickness.
 
-![Waypoints]({{site.baseurl}}/images/Outline_StencilInnerOuter.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Outline_StencilInnerOuter.JPG)
 
 ## 3.25) Using "Rim light" 
 
@@ -61,7 +62,7 @@ This is not an outline, but might be useful and it takes only one pass. You have
 - Adjust the dot value according to the desired intensity and smoothness using smoothstep.  
 - Use the final value to lerp between the outline color and the mesh texture.
 
-![Waypoints]({{site.baseurl}}/images/Outline_RimLight.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Outline_RimLight.JPG)
 
 ## 3.5) Using MatCap
  
@@ -73,7 +74,7 @@ The steps are:
 - Use normal.xy to sample the matcap texture.
 - Use the matcap value to lerp between the outline color and the mesh texture.
 
-![Waypoints]({{site.baseurl}}/images/Outline_Matcap.JPG)
+![Waypoints]({{site.baseurl}}/assets/images/blog/Outline_Matcap.JPG)
 
 ## The end
 

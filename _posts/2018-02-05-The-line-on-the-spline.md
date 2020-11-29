@@ -1,8 +1,9 @@
 ---
 published: true
 layout: post
-title: The Line on the Spline
+title: The Line On The Spline
 date: '2018-02-12'
+image: /assets/images/blog/splineRenderer_goodCurve.JPG
 categories:
   - unity
   - spline
@@ -111,7 +112,7 @@ Let's call this new direction as width direction. Now, with both width direction
 
 And then we can define our triangles as (_v[0]_, _v[2]_, _v[1]_) and (_v[1]_, _v[2]_, _v[3]_) (clockwise order to render properly (if Unity had right-hand coordinates, it would be counter-clockwise)). The following image shows everybody in their places:
 
-![splineRenderer_triangles]({{site.baseurl}}/images/splineRenderer_triangles.JPG)
+![splineRenderer_triangles]({{site.baseurl}}/assets/images/blog/splineRenderer_triangles.JPG)
 
 For the following segments, we only need to compute the vertices at the end of the segment since the two vertices first vertices are the same as the last two from the previous segment. The code to create a segment is the following:
 
@@ -160,7 +161,7 @@ Once all the vertices are defined, we need to create our mesh on Unity. The proc
 
 The result is already okay-ish, but it can be improved. The intermediate vertices are oriented according to the previous segment direction and it does not look good, specially when the curve is very tight (check the following image).
 
-![badCurve]({{site.baseurl}}/images/splineRenderer_badCurve.JPG)
+![badCurve]({{site.baseurl}}/assets/images/blog/splineRenderer_badCurve.JPG)
 
 What we can do to improve this is to adjust the vertices in the corner considering the previous and next segments. We do the following:
 1. Compute the two first vertices of the next segment according to that segment direction.
@@ -169,8 +170,8 @@ What we can do to improve this is to adjust the vertices in the corner consideri
 4. Compute the direction formed by those new vertices.
 5. Adjust the distance between those new vertices to comply with the width distance. 
 
-![midDirection]({{site.baseurl}}/images/splineRenderer_midDirection.JPG)
-![goodCurve]({{site.baseurl}}/images/splineRenderer_goodCurve.JPG)
+![midDirection]({{site.baseurl}}/assets/images/blog/splineRenderer_midDirection.JPG)
+![goodCurve]({{site.baseurl}}/assets/images/blog/splineRenderer_goodCurve.JPG)
 
 This is the code:
 ```C#
