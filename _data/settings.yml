@@ -289,7 +289,7 @@ publications-items:
      - type: "conferences"
      - type: "journals"
 
-  - image : "assets/images/publications/gpu-zen-logo-black.png"
+  - image : "assets/images/publications/gpu-zen.png"
     url: "http://gpuzen.blogspot.com/"
     title : "Mobile Toon Shading"
     authors : "Felipe Lira, Felipe Chaves, Flávio Villalva, Jesus Sosa, Kléverson Paixão, Teófilo Dutra"
