@@ -54,7 +54,7 @@ social:
 
 # About Section
 blurb:
-  Hi! My name is Teófilo (a.k.a. Teo). I am a programmer with +5 years of experience in R&D. In this website, you will find more information about me, the <a href="portfolio">projects I have worked in so far</a>   and some of my  <a href="publications">publications</a>. Once in a while I also post things in <a href="blog">my blog</a> as well. Feel free to reach out on my social networks.
+  Hi! My name is Teófilo (a.k.a. Teo). I am a programmer with +7 years of experience in R&D. In this website, you will find more information about me, the <a href="portfolio">projects I have worked in so far</a>   and some of my  <a href="publications">publications</a>. Once in a while I also post things in <a href="blog">my blog</a> as well. Feel free to reach out on my social networks.
 
 blurb-btn-link: '/about'
 blurb-btn-name: know more
@@ -108,9 +108,11 @@ blurb-btn-name: know more
 
 experience-title: Experience
 experience:
-- {name: Senior Software Engineer, icon: 'icon-3.png', date: 'Jan 2020 - Present', organization: 'Cloudhead Games'}
-- {name: Senior Software Engineer, icon: 'icon-2.png', date: 'Oct 2017 - Dec 2019', organization: 'Archiact Interactive'}
-- {name: Core Tech Engineer, icon: 'icon-1.png', date: 'Nov 2015 - Oct 2017', organization: 'Black River Studios'}
+- {name: Senior Graphics Engineer, icon: '05_Unity.jpg', date: 'Jun 2021 - Present', organization: 'Unity Technologies'}
+- {name: Graphics Engineer, icon: '04_BBI.jpg', date: 'Jan 2021 - Jun 2021', organization: 'Blackbird Interactive'}
+- {name: Graphics Engineer, icon: '03_CHG.jpg', date: 'Jan 2020 - Jan 2021', organization: 'Cloudhead Games'}
+- {name: Senior Software Engineer, icon: '02_Archiact.jpg', date: 'Oct 2017 - Dec 2019', organization: 'Archiact Interactive'}
+- {name: Core Tech Engineer, icon: '01_BRS.jpg', date: 'Nov 2015 - Oct 2017', organization: 'Black River Studios'}
 
 
 #-------------------------------
@@ -166,6 +168,12 @@ portfolio-label:
   }
 
 portfolio-items:
+  - image : "assets/images/portfolio/metacast.gif"
+    url: "https://unity.com/sports"
+    home : true
+    portfolio-type:
+     - type: "projects"
+     
   - image : "assets/images/portfolio/pistolwhip.png"
     url: "https://cloudheadgames.com/pistol-whip/"
     home : true
@@ -252,7 +260,7 @@ portfolio-items:
 
   - image : "assets/images/portfolio/multipotential-fields.gif"
     url: "https://www.youtube.com/watch?v=COlxvs6pywA"
-    home: false
+    home: true
     portfolio-type:
       - type: "media"
       
