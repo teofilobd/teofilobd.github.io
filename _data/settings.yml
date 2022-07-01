@@ -110,7 +110,7 @@ experience-title: Experience
 experience:
 - {name: Senior Graphics Engineer, icon: '05_Unity.jpg', date: 'Jun 2021 - Present', organization: 'Unity Technologies'}
 - {name: Graphics Engineer, icon: '04_BBI.jpg', date: 'Jan 2021 - Jun 2021', organization: 'Blackbird Interactive'}
-- {name: Graphics Engineer, icon: '03_CHG.jpg', date: 'Jan 2020 - Jan 2021', organization: 'Cloudhead Games'}
+- {name: Senior Software Engineer, icon: '03_CHG.jpg', date: 'Jan 2020 - Jan 2021', organization: 'Cloudhead Games'}
 - {name: Senior Software Engineer, icon: '02_Archiact.jpg', date: 'Oct 2017 - Dec 2019', organization: 'Archiact Interactive'}
 - {name: Core Tech Engineer, icon: '01_BRS.jpg', date: 'Nov 2015 - Oct 2017', organization: 'Black River Studios'}
 
