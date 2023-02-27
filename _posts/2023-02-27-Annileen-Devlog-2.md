@@ -85,7 +85,7 @@ I started the work by the base engine since it didn't have dependencies (other t
     - Move `.h` content to `.cpp` file.
     - Change file extension `.cpp` to module extension `.ixx`.
     - Check if file configuration is correct on MSVC (**Configuration Properties > General > Item Type > C/C++ compiler**).
-    - Translate code to comply with module coding rules (Check [annileen module structure](#annileen-module-structure-)).
+    - Translate code to comply with module coding rules (check [annileen module structure](#annileen-module-structure-)).
     - Work on it until it compiles, then goes to next leaf.
 - After leaves, go up in the hierarchy until going through all files.
 
@@ -93,7 +93,7 @@ I started the work by the base engine since it didn't have dependencies (other t
 
 ### Annileen module structure [↑](#summary)
 
-In this section, I will explain the module structure that I've been using in the project. Some things are mandatory, some other you can do your own way and this is the way I chose to follow. In the end of the section you can find the whole structure. Lets' start!
+In this section, I will explain the module structure that I've been using in the project. Some things are mandatory, some others you can do your own way and this is the way I chose to follow. In the end of the section you can find the whole structure. Let's start!
 
 ```c++
 module; // optional (or not)
@@ -235,9 +235,9 @@ namespace myNamespace
 
 #### Cyclic dependencies 
 
-Modules don't like cyclic dependencies very much. If you have cyclic dependencies you will get an error saying something like:
+Modules don't like cyclic dependencies very much. If you have cyclic dependencies you will get an error saying something like this:
 
-> <sub><sup>`Cannot build the following source files because there is a cyclic dependency between them: myModule1.ixx depends on myModule2.ixx depends on myModule1.ixx`. </sub></sup>
+> <sub><sup>`Cannot build the following source files because there is a cyclic dependency between them: myModule1.ixx depends on myModule2.ixx depends on myModule1.ixx`. </sup></sub>
 
 And if you try the usual approach of forward declaring what you need, it won't work (at least it didn't for me). But there's always a way ...
 
@@ -275,7 +275,7 @@ export module mymodule;
 // omitted...
 ```
 
-I'm not proud of this, but it works. Be aware that it works only in cases where you can work with an incomplete type (given that we know nothing about that class and we are not importing it). _Ideally you should just avoid cyclic dependencies_. Annileen we had quite a few in place and most (or maybe all) of them were just result of poor design and in the end I was able to get rid of them by redesign. If you're not too attached to using modules, you can just keep using headers for special cases like this as well and things will just work fine. In my case, I was just trying to use modules for everything.
+I'm not proud of this, but it works. Be aware that it works only in cases where you can work with an incomplete type (given that we know nothing about that class and we are not importing it). _Ideally you should just avoid cyclic dependencies_. Annileen had quite a few in place and most (or maybe all) of them were just result of poor design and in the end I was able to get rid of them by redesign. If you're not too attached to using modules, you can just keep using headers for special cases like this as well and things will just work fine. In my case, I was just trying to use modules for everything.
 
 #### Macros
 
@@ -323,7 +323,7 @@ We need some macros to configure Annileen applications as well. I don't know how
 
 In a `.h/.cpp` workflow, if you want to distribute a library you need to provide headers and binaries. In a workflow with modules, you need to provide IFCs and binaries. Every time you compile a module you get a `.obj` and a `.ifc` file. The IFC is a binary file which contains a metadata description of the module interface. In MSVC, if you have everything you need in your solution and the references of the projects are correctly set, then the IFCs will be referenced correctly and everything should work just fine. 
 
-If you want to reference some external library, then you'll need to specify its IFCs locations (**Configuration Properties > C/C++ > General > Additional BMI Directories**) and names (**Configuration Properties > C/C++ > Additional Module Dependencies**) in the project settings.    
+However, if you want to reference external modules, you'll need to specify its IFCs locations (**Configuration Properties > C/C++ > General > Additional BMI Directories**) and names (**Configuration Properties > C/C++ > Additional Module Dependencies**) in the project settings.    
  
 ### Errors and Intellisense [↑](#summary)
 
@@ -331,8 +331,9 @@ By far the most annoying thing that can happen when you're working with modules 
 
 Another annoying thing in Visual Studio is that Intellisense is not working well yet with modules. Even though things compile and run well, it keeps showing false-positives and those get mixed with real errors. Few examples:
 - Let's say you have two classes `A` and `B`, and you define `A` as friend inside `B`. Whenever `A` access private or protected members of `B`, the Intellisense will complain that `Member "something" is inaccessible`.
-- `Pointer to incomplete class is not allowed` even though the class is defined and imported. This usually shows up when calling static methods.
-- `Type name is not allowed` when using templates. 
+- You can get `Pointer to incomplete class is not allowed` even though the class is defined and imported. This usually shows up when calling static methods.
+- You can get `Type name is not allowed` when using templates. 
+Is there a chance of this being me misusing C++ and MSVC? 100%! But the code compiles and runs fine with those errors, sooo ...
 
 ### Final considerations [↑](#summary)
 
@@ -340,9 +341,9 @@ The beginning of this migration was very challeging and I thought about giving u
 
 As for build systems, we use premake in Annileen and it's working ok with MSVC. I just needed to set the `cppdialect "C++20"` for projects in the configuration file. Since all files use `.ixx` extension, MSVC automatically recognizes them as modules and does its job. Premake added [some specific options for modules](https://github.com/premake/premake-core/pull/1570){:target="_blank"}, but I haven't tried them yet. 
 
-Things are not so well for generating Cmake files (with modules support) with premake yet and this the reason why our implementation of modules is still on a separate branch (we want Annileen compiling on all main systems before merging modules to main branch). [Cmake is getting there](https://www.kitware.com/import-cmake-c20-modules/){:target="_blank"} though, but that needs to happen first before premake's turn I guess.
+Things are not so well for generating CMake files (with modules support) with premake yet and this the reason why our implementation of modules is still on a separate branch (we want Annileen compiling on all main systems before merging modules to main branch). [CMake is getting there](https://www.kitware.com/import-cmake-c20-modules/){:target="_blank"} though, but that needs to happen first before premake's turn I guess.
 
-That's it for now. If you want to check Annileen code and try it at your own risk, [this is the experimental C++20 branch on GitHub](https://github.com/CrociDB/annileen/tree/feature/cpp20){:target="_blank"}.
+And that's it for now. If you want to check Annileen code and try it at your own risk, [this is the experimental C++20 branch on GitHub](https://github.com/CrociDB/annileen/tree/feature/cpp20){:target="_blank"}.
 
 ### References [↑](#summary)
 
@@ -356,4 +357,4 @@ That's it for now. If you want to check Annileen code and try it at your own ris
 - [Understanding C++ Modules: Part 3](https://vector-of-bool.github.io/2019/10/07/modules-3.html){:target="_blank"}
 - [C++ compiler support](https://en.cppreference.com/w/cpp/compiler_support){:target="_blank"}
 - [Premake module support PR](https://github.com/premake/premake-core/pull/1570){:target="_blank"}
-- [Cmake module support as of 2023 Jan.](https://www.kitware.com/import-cmake-c20-modules/){:target="_blank"}
+- [CMake module support as of 2023 Jan.](https://www.kitware.com/import-cmake-c20-modules/){:target="_blank"}
