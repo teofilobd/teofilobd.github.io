@@ -108,7 +108,7 @@ blurb-btn-name: know more
 
 experience-title: Experience
 experience:
-- {name: Senior Graphics Engineer, icon: '05_Unity.jpg', date: 'Jun 2021 - Present', organization: 'Unity Technologies'}
+- {name: Senior Graphics Engineer, icon: '05_Unity.jpg', date: 'Jun 2021 - Feb 2023', organization: 'Unity Technologies'}
 - {name: Graphics Engineer, icon: '04_BBI.jpg', date: 'Jan 2021 - Jun 2021', organization: 'Blackbird Interactive'}
 - {name: Senior Software Engineer, icon: '03_CHG.jpg', date: 'Jan 2020 - Jan 2021', organization: 'Cloudhead Games'}
 - {name: Senior Software Engineer, icon: '02_Archiact.jpg', date: 'Oct 2017 - Dec 2019', organization: 'Archiact Interactive'}

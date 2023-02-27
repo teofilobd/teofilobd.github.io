@@ -3,6 +3,7 @@ published: true
 layout: post
 title: Varied Shader Variants
 date: '2018-01-25'
+image: /assets/images/experience/05_Unity.jpg
 categories:
   - unity
   - shaders

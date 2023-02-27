@@ -3,6 +3,7 @@ published: true
 layout: post
 title: From Built-in to URP 
 date: '2020-05-18'
+image: /assets/images/experience/05_Unity.jpg
 categories:
   - unity
   - shaders
