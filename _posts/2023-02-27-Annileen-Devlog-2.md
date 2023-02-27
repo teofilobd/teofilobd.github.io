@@ -1,7 +1,7 @@
 ---
 published: true
 layout: post
-title: "Annileen Devlog #2 - C++20 and modules"
+title: "Annileen Devlog #2 - C++20 and Modules"
 date: '2023-02-27'
 image: /assets/images/blog/cpp_logo.png
 categories:
@@ -31,7 +31,7 @@ categories:
 
 Hey, I'm alive! It's been a while since my last post and a lot of things have changed in my life since then. Back then, I think I was still working at Cloudhead Games. After that I joined Blackbird Interactive and that was right before I joined Unity in 2021. Unfortunately, I got laid off in the January round of layoffs :( and while I'm still figuring out what to do next I decided to return to work on some personal projects. One of those projects is a toy engine called [Annileen](https://github.com/CrociDB/annileen){:target="_blank"} that I slowly develop with my friend [Bruno Croci](https://crocidb.com){:target="_blank"}.
 
-Croci started to work in this engine in 2018 inspired by minecraft around 2020 I decided to join the projec, since I always wanted to develop my own toy engine for study purposes (e.g. keep practicing C++, rendering techniques, etc.). The history is way longer than that, of course, but lucky for me Croci already [wrote a post about about it with more details on his blog](https://crocidb.com/post/annileen-devlog-0-introduction/){:target="_blank"} (he also wrote a [post about the asset management](https://crocidb.com/post/annileen-devlog-1-asset-management/){:target="_blank"}). On his blog post, Croci introduces Annileen tech stack with more details, but in short: it is a C++ engine built around [bgfx](https://github.com/bkaradzic/bgfx){:target="_blank"} and [Dear ImGui](https://github.com/ocornut/imgui){:target="_blank"}, with [premake5](https://premake.github.io/){:target="_blank"} being used as build system.
+Croci started to work on this engine in 2018 inspired by minecraft and around 2020 I decided to join the project, since I always wanted to develop my own toy engine for study purposes (e.g. keep practicing C++, rendering techniques, etc.). The history is way longer than that, of course, but lucky for me Croci already [wrote a post about about it with more details on his blog](https://crocidb.com/post/annileen-devlog-0-introduction/){:target="_blank"} (he also wrote a [post about the asset management](https://crocidb.com/post/annileen-devlog-1-asset-management/){:target="_blank"}). On his blog post, Croci introduces Annileen tech stack with more details, but in short: it is a C++ engine built around [bgfx](https://github.com/bkaradzic/bgfx){:target="_blank"} and [Dear ImGui](https://github.com/ocornut/imgui){:target="_blank"}, with [premake5](https://premake.github.io/){:target="_blank"} being used as build system.
 
 As you might notice if you check our [github](https://github.com/CrociDB/annileen){:target="_blank"}, the development of the engine is VERY slow. So slow that we barely touched rendering yet. The main reason for this is that **Life Happens (TM)**. Sometimes we have bursts of excitement and commit to the development for a few days, then **Life Happens (R)** and we stay months away ¯\\_(ツ)_/¯. Jump to 2023 and here I am using my spare time to work a bit in the engine again.
 
