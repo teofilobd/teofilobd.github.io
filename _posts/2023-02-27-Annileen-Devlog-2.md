@@ -15,6 +15,8 @@ categories:
 
 <br/><br/><br/><br/><br/><br/>
 
+> Update #1: [28/02/23] Added a [section](#results-) with some stats. Also fixed some wrong assumptions with help from [Daniela-E comment on reddit](https://www.reddit.com/r/cpp/comments/11dqppx/comment/jacb1y7/?utm_source=share&utm_medium=web2x&context=3).
+
 ### Summary
 
 1. [Introduction](#introduction-).
@@ -24,8 +26,9 @@ categories:
 5. [Cyclic dependencies, macros and ways to cheat](#cyclic-dependencies-macros-and-ways-to-cheat-).
 6. [IFCs and external modules](#ifcs-and-external-modules-).
 7. [Errors and Intellisense](#errors-and-intellisense-).
-8. [Final considerations](#final-considerations-).
-9. [References](#references-).
+8. [Results](#results-).
+9. [Final considerations](#final-considerations-).
+10. [References](#references-).
 
 ### Introduction [↑](#summary)
 
@@ -99,7 +102,7 @@ In this section, I will explain the module structure that I've been using in the
 module; // optional (or not)
 ```
 
-This first line tells the compiler that this is a **module interface**. This line is optional or at least should be. If I omit this line in MSVC I might get this warning:
+This first line tells the compiler that this is a **module interface**. ~~This line is optional or at least should be~~ (**correction from Daniela-E on reddit:** `module;` introduces the so called _'global module fragment'_ that may be empty, to be followed by the _'module declaration'_. The latter determines if a named module is an interface or not depending on the appearance of the optional _'export'_ keyword in that declaration). If I omit this line in MSVC I might get this warning:
 
 > <sup><sub>**C5201** A module declaration can appear only at the start of a translation unit unless a global module fragment is used.</sub></sup>
 
@@ -241,7 +244,7 @@ Modules don't like cyclic dependencies very much. If you have cyclic dependencie
 
 And if you try the usual approach of forward declaring what you need, it won't work (at least it didn't for me). But there's always a way ...
 
-<span style="color: red;">**Warning of workaround (use it at your own risk)!**</span> There is probably a way of solving this problem using modules, I just don't know it yet. However, you can solve it using headers. Actually, you could even do it without headers. What you need to do is to write your forward declarations before the module declaration. If you simply do it like this:
+<span style="color: red;">**Warning of workaround (use it at your own risk)!**</span> There is probably a way of solving this problem using modules ~~, I just don't know it yet~~ (**from Daniela-E on reddit:** the modules way is to use so called _'internal modules'_. Put your (forward) declarations there). However, you can solve it using headers. Actually, you could even do it without headers. What you need to do is to write your forward declarations before the module declaration. If you simply do it like this:
 
 ```c++
 // omitted...
@@ -275,11 +278,11 @@ export module mymodule;
 // omitted...
 ```
 
-I'm not proud of this, but it works. Be aware that it works only in cases where you can work with an incomplete type (given that we know nothing about that class and we are not importing it). _Ideally you should just avoid cyclic dependencies_. Annileen had quite a few in place and most (or maybe all) of them were just result of poor design and in the end I was able to get rid of them by redesign. If you're not too attached to using modules, you can just keep using headers for special cases like this as well and things will just work fine. In my case, I was just trying to use modules for everything.
+I'm not proud of this, but it works. Be aware that it works only in cases where you can work with an incomplete type (given that we know nothing about that class and we are not importing it). _Ideally you should just avoid cyclic dependencies_ (**comment from Daniela-E on reddit:** Module dependency graphs must be acyclic). Annileen had quite a few in place and most (or maybe all) of them were just result of poor design and in the end I was able to get rid of them by redesign. If you're not too attached to using modules, you can just keep using headers for special cases like this as well and things will just work fine. In my case, I was just trying to use modules for everything.
 
 #### Macros
 
-In Annileen, we rely on macros to simplify some definitions or function calls. For example, in the `Logger` class we define a bunch of macros for different logging types, such as `ANNILEEN_LOG`, `ANNILEEN_LOG_WARNING`, `ANNILEEN_LOG_INFO`, and so on. For making it easier to create Annileen applications, we also define some macros such as `ANNILEEN_APP_MAIN`. The problem is that modules don't export macros. Most of these macros could be avoided though. The `Logger` ones could be replaced by exported functions within `Logger` (I will do that at some point); constants can be replaced by exported `const` or `constexpr`. But in the case where you can't get rid of your macros, well there's always a way ...
+In Annileen, we rely on macros to simplify some definitions or function calls. For example, in the `Logger` class we define a bunch of macros for different logging types, such as `ANNILEEN_LOG`, `ANNILEEN_LOG_WARNING`, `ANNILEEN_LOG_INFO`, and so on. For making it easier to create Annileen applications, we also define some macros such as `ANNILEEN_APP_MAIN`. ~~The problem is that modules don't export macros~~ (**Correction from Daniela-E on reddit:** Named modules don't export macros, so called _'header units'_ do. Create a header with your user-facing macros like e.g. `logmacros.h` and then `import <logmacacros.h>;`). Most of these macros could be avoided though. The `Logger` ones could be replaced by exported functions within `Logger` (I will do that at some point); constants can be replaced by exported `const` or `constexpr`. But in the case where you can't get rid of your macros, well there's always a way ...
 
 <span style="color: red;">**Warning of workaround (use it at your own risk)!**</span> And the solution once again relies on headers. What you need to do is to create a header, import the module you need and then add your macros. Whenever you need that module, you'll use the header instead of importing the module. Taking the `Logger` as example, we have a module `logger` and a header `logger.h`, wherever we need logging we use the header. The `logger.h` looks like this:
 
@@ -334,6 +337,87 @@ Another annoying thing in Visual Studio is that Intellisense is not working well
 - You can get `Pointer to incomplete class is not allowed` even though the class is defined and imported. This usually shows up when calling static methods.
 - You can get `Type name is not allowed` when using templates. 
 Is there a chance of this being me misusing C++ and MSVC? 100%! But the code compiles and runs fine with those errors, sooo ...
+
+### Results [↑](#summary)
+
+I ran some tests in order to compare results from the [cpp20 branch](https://github.com/CrociDB/annileen/tree/feature/cpp20){:target="_blank"} (using modules) against [master branch](https://github.com/CrociDB/annileen){:target="_blank"} (using headers). First some building and linking times comparison, and then a build size comparison.
+
+#### Scenario #1: Annileen base (Release)
+
+Just built the `Annileen base` project after cleaning up.
+
+{:.table}
+Headers | Build | Link                   
+---------------------|---------------------|---------------------
+Test #1 | 44.704s | 0.145s
+Test #2 | 44.650s | 0.123s
+Test #3 | 44.356s | 0.122s
+Test #4 | 44.753s | 0.137s
+Test #5 | 44.792s | 0.127s
+
+{:.table}
+Modules | Build | Link                   
+---------------------|---------------------|---------------------
+Test #1 | 29.660s | 0.177s
+Test #2 | 26.867s | 0.181s
+Test #3 | 29.663s | 0.156s
+Test #4 | 30.841s | 0.189s
+Test #5 | 29.745s | 0.171s
+
+In these tests, we can see that modules building times are way higher whereas linking times got a bit slower than the headers version.
+
+#### Scenario #2: Example-cube (Release)
+
+Built `example-cube` after cleaning up, i.e., it builds `Annileen base` and `cube-example` projects. 
+
+{:.table}
+Headers | Build | Link                   
+---------------------|---------------------|---------------------
+Test #1 | 51.821s | 0.353s
+Test #2 | 51.869s | 0.321s
+Test #3 | 51.444s | 0.346s
+
+{:.table}
+Modules | Build | Link                   
+---------------------|---------------------|---------------------
+Test #1 | 47.018s | 0.688s
+Test #2 | 43.400s | 0.391s
+Test #3 | 41.664s | 0.457s
+
+In these tests, the difference is smaller, but we still have lower building times and higher linking times.
+
+#### Scenario #3: Change some method and rebuild
+
+Changed a method in `SceneNode` class and rebuilt Annileen without cleaning up.
+
+{:.table}
+Headers | Build
+---------------------|---------------------
+Test #1 | 6.679s
+Test #2 | 6.570s
+Test #3 | 6.779s
+
+{:.table}
+Modules | Build
+---------------------|---------------------
+Test #1 | 12.522s
+Test #2 | 12.211s
+Test #3 | 13.016s
+
+These results are a bit odd. I would expect the modules project to build faster in an incremental case, but the headers version built way faster. I don't know why.
+
+#### Build size comparison
+
+Build sizes from `example-cube` project:
+
+{:.table}
+Folder | Modules (Debug) | Headers (Debug) | Modules (Release) | Headers (Release) 
+---------------------|---------------------|---------------------|---------------------|---------------------
+Bin | 229 MB | 197 MB | 117 MB | 103 MB
+Obj | 507 MB 🔥 | 172 MB | 260 MB 🔥 | 68.8 MB
+Obj (Annileen only) | 356 MB 🔥 | 55.7 MB | 209 MB 🔥| 29.5 MB
+
+Modules are bigger (as expected) because of IFCs, but I think that it's a bit too much 😅.
 
 ### Final considerations [↑](#summary)
 
