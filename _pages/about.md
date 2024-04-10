@@ -10,4 +10,4 @@ Hi! My name is Teófilo Dutra. I am a programmer with +7 years of experience in 
 
 I am an inquisitive person, always eager to learn new things. In the same way, I enjoy sharing those findings, experiences and knowledge with the community.
 
-In the recent years, I have been working mostly with VR, C#, Unity and shader languages. I try to keep up with C++ and other subjects by working on personal projects. Although my family is my priority in my spare time <i class="ti-heart"></i>.
+In the recent years, I have been working mostly with C++, C#, Unity and shading languages. I try to keep up with other subjects by working on personal projects. Although my family is my priority in my spare time <i class="ti-heart"></i>.

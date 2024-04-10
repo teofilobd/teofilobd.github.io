@@ -45,7 +45,7 @@ social:
 #- {icon: "ti-facebook", link: "#"}
 #- {icon: "ti-instagram", link: "#"}
 #- {icon: "ti-dribbble", link: "#"}
-- {icon: "ti-twitter-alt", link: "https://twitter.com/teodutra"}
+#- {icon: "ti-twitter-alt", link: "https://twitter.com/teodutra"}
 - {icon: "ti-linkedin", link: "https://www.linkedin.com/in/teofilodutra/"}
 
 
@@ -54,7 +54,7 @@ social:
 
 # About Section
 blurb:
-  Hi! My name is Teófilo (a.k.a. Teo). I am a programmer with +7 years of experience in R&D. In this website, you will find more information about me, the <a href="portfolio">projects I have worked in so far</a>   and some of my  <a href="publications">publications</a>. Once in a while I also post things in <a href="blog">my blog</a> as well. Feel free to reach out on my social networks.
+  Hi! My name is Teófilo (a.k.a. Teo). I am a programmer with +7 years of experience in R&D. In this website, you will find more information about me, the <a href="portfolio">projects I have worked in so far</a>   and some of my  <a href="publications">publications</a>. Once in a while I post things in <a href="blog">my blog</a> as well. Feel free to reach out on my social networks.
 
 blurb-btn-link: '/about'
 blurb-btn-name: know more
@@ -108,6 +108,7 @@ blurb-btn-name: know more
 
 experience-title: Experience
 experience:
+- {name: Senior Software Engineer, icon: '06_Skyboxlabs.jpg', date: 'Sept 2023 - Present', organization: 'SkyBox Labs'}
 - {name: Senior Graphics Engineer, icon: '05_Unity.jpg', date: 'Jun 2021 - Feb 2023', organization: 'Unity Technologies'}
 - {name: Graphics Engineer, icon: '04_BBI.jpg', date: 'Jan 2021 - Jun 2021', organization: 'Blackbird Interactive'}
 - {name: Senior Software Engineer, icon: '03_CHG.jpg', date: 'Jan 2020 - Jan 2021', organization: 'Cloudhead Games'}
@@ -168,8 +169,20 @@ portfolio-label:
   }
 
 portfolio-items:
+  - image : "assets/images/portfolio/minecraft.png"
+    url: "https://www.minecraft.net"
+    home : true
+    portfolio-type:
+     - type: "games"
+
+  - image : "assets/images/portfolio/framefactory.png"
+    url: "https://framefactory.app"
+    home : true
+    portfolio-type:
+     - type: "projects"
+
   - image : "assets/images/portfolio/metacast.gif"
-    url: "https://unity.com/sports"
+    url: "https://blog.unity.com/industry/experience-the-future-of-sports-in-volumetric-3d"
     home : true
     portfolio-type:
      - type: "projects"
@@ -188,7 +201,7 @@ portfolio-items:
 
   - image : "assets/images/portfolio/raytracer.gif"
     url: "https://github.com/teofilobd/URP-RayTracer"
-    home: true
+    home: false
     portfolio-type:
       - type: "projects"
 
@@ -223,25 +236,25 @@ portfolio-items:
      - type: "games"
 
   - image : "assets/images/portfolio/conflict0-revolution.png"
-    url: "https://blackriverstudios.net/conflictzerorevolution/"
+    url: "https://www.youtube.com/watch?v=E4jhjXDJkt0"
     home: false
     portfolio-type:
      - type: "games"
 
   - image : "assets/images/portfolio/conflict0-shattered-vr.png"
-    url: "https://blackriverstudios.net/conflictzeroshattered/"
+    url: "https://www.youtube.com/watch?v=hZKnQ6PHFnw"
     home: false
     portfolio-type:
      - type: "games"
 
   - image : "assets/images/portfolio/angest.png"
-    url: "https://blackriverstudios.net/angest/"
+    url: "https://www.youtube.com/watch?v=CoJgJeJznII"
     home: true
     portfolio-type:
      - type: "games"
 
   - image : "assets/images/portfolio/rock-and-rails.png"
-    url: "https://blackriverstudios.net/rock&rails/"
+    url: "https://www.youtube.com/watch?v=pPU5PqqgUrY"
     home: false
     portfolio-type:
      - type: "games"
@@ -253,7 +266,7 @@ portfolio-items:
      - type: "games"
 
   - image : "assets/images/portfolio/rococo-vr.png"
-    url: "https://blackriverstudios.net/rococovr/"
+    url: "https://www.youtube.com/watch?v=4kV69InTqLs"
     home: false
     portfolio-type:
      - type: "games"
